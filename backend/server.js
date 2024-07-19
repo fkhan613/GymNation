@@ -1,0 +1,13 @@
+require("dotenv").config();
+require("express-async-errors");
+const express = require("express");
+const app = express();
+const path = require("path");
+const { logger, logEvents } = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
+const connectDB = require("./config/dbConn");
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 3500;
