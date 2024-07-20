@@ -4,12 +4,10 @@ const mongoose = require("mongoose");
 
 const groupSchema = new mongoose.Schema(
   {
-    owner: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     name: {
       type: String,
       required: true,
@@ -22,6 +20,7 @@ const groupSchema = new mongoose.Schema(
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        default: [this.owner],
         ref: "User",
       },
     ],
