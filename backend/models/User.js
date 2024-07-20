@@ -29,7 +29,20 @@ const userSchema = new mongoose.Schema(
     },
     pfp: {
       type: String,
-      default: "",
+      default:
+        "https://res.cloudinary.com/dr2xuaa6e/image/upload/f_auto,q_auto/default-pfp", //<-- default pfp using cloudinary
+    },
+    fitnessGoals: {
+      type: Map,
+      of: SVGAnimatedBoolean,
+    },
+    followers: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+    },
+    following: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
     },
   },
   {
