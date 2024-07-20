@@ -36,9 +36,10 @@ const userSchema = new mongoose.Schema(
         "https://res.cloudinary.com/dr2xuaa6e/image/upload/f_auto,q_auto/default-pfp", //<-- default pfp using cloudinary
     },
     fitnessGoals: {
+      // <-- fitnessGoals is a map of strings to booleans i.e. { "Lose 15 pounds in 3 months": true, "Gain 4 pounds of lean muscle": false }
       type: Map,
       of: Boolean,
-    },                // <-- fitnessGoals is a map of strings to booleans i.e. { "Lose 15 pounds in 3 months": true, "Gain 4 pounds of lean muscle": false }
+    },
     followers: {
       type: [mongoose.Schema.Types.ObjectId],
       default: [],
