@@ -34,14 +34,16 @@ const userSchema = new mongoose.Schema(
     },
     fitnessGoals: {
       type: Map,
-      of: SVGAnimatedBoolean,
-    },
+      of: Boolean,
+    },                // <-- fitnessGoals is a map of strings to booleans i.e. { "Lose 15 pounds in 3 months": true, "Gain 4 pounds of lean muscle": false }
     followers: {
       type: [mongoose.Schema.Types.ObjectId],
+      default: [],
       ref: "User",
     },
     following: {
       type: [mongoose.Schema.Types.ObjectId],
+      default: [],
       ref: "User",
     },
   },
