@@ -1,3 +1,6 @@
+// Description: User model schema... not much else to say here.
+
+
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
