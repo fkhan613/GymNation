@@ -59,3 +59,7 @@
 20240720	18:54:07	6ad52c4e-3672-4456-a797-d3e5fca148c3	POST	/users	undefined
 20240720	18:54:18	c283ae66-a040-4292-bebf-02149583bb86	DELETE	/users	undefined
 20240720	18:54:30	31736bbc-a3f2-49d9-906e-b9552f5edd15	POST	/users	undefined
+20240720	19:09:19	84ae5d86-cde8-4534-abc4-8b8f850440fa	GET	/users	undefined
+20240720	19:10:32	d8d031b1-baea-474c-9d41-463b8e8319f3	PATCH	/users	undefined
+20240720	19:10:50	e74d184d-34ba-41a6-acc8-50d45cc78e75	PATCH	/users	undefined
+20240720	19:11:01	456de1a0-f579-476f-a6ee-0d0560c9e7fe	PATCH	/users	undefined

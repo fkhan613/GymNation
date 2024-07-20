@@ -43,7 +43,7 @@ const createNewUser = async (req, res) => {
 
   if (duplicate) {
     return res
-      .status(400)
+      .status(409)
       .json({ message: "Username or Email already exists" });
   }
 
@@ -67,7 +67,60 @@ const createNewUser = async (req, res) => {
 // @desc Update a user
 // @route PATCH /users
 // @access Private
-const updateUserById = async (req, res) => {};
+const updateUserById = async (req, res) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    email,
+    password,
+    username,
+    bio,
+    pfp,
+    fitnessGoals,
+  } = req.body;
+
+  // Validate data
+  if (!id || !username || !email) {
+    return res
+      .status(400)
+      .json({ message: "User ID, Username, and Email are required" });
+  }
+
+  // Does the user exist?
+  const user = await User.findById(id).exec();
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Check for duplicate
+  const duplicate = await User.findOne({ email, username })
+    .collation({ locale: "en", strength: 2 })
+    .lean()
+    .exec();
+
+  if (duplicate && duplicate._id.toString() !== id) {
+    return res
+      .status(409)
+      .json({ message: "Username or Email already exists" });
+  }
+
+  // Update user
+  user.firstName = firstName || user.firstName;
+  user.lastName = lastName || user.lastName;
+  user.email = email || user.email;
+  user.username = username || user.username;
+  user.bio = bio || user.bio;
+  user.pfp = pfp || user.pfp;
+  user.fitnessGoals = fitnessGoals || user.fitnessGoals;
+  user.password =
+    (password ?? (await bcrypt.hash(password, 10))) || user.password; //if the user enters a new password (password??), hash it, otherwise keep the old password
+
+  const result = await user.save();
+
+  res.json(result);
+};
 
 // @desc Delete a user
 // @route DELETE /users
