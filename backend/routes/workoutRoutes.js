@@ -5,9 +5,9 @@ const router = express.Router();
 router
   .route("/")
   .get(workoutController.getAllWorkouts)
-  .post(workoutController.createWorkout)
-  .patch(workoutController.updateWorkout)
-  .delete(workoutController.deleteWorkout);
+  .post(workoutController.createNewWorkout)
+  .patch(workoutController.updateWorkoutById)
+  .delete(workoutController.deleteWorkoutById);
 
 router.route("/:id").get(workoutController.getWorkoutById);
 
