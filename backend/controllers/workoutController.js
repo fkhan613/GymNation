@@ -95,7 +95,7 @@ const createNewWorkout = async (req, res) => {
 };
 
 // @desc Update workout by ID
-// @route PUT /workouts
+// @route PATCH /workouts
 // @access private
 
 const updateWorkoutById = async (req, res) => {

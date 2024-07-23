@@ -147,6 +147,8 @@ const deleteUserById = async (req, res) => {
   res.json(reply);
 };
 
+//!FIND A WAY TO FOLLOW AND UNFOLLOW USERS
+
 module.exports = {
   getUserById,
   createNewUser,

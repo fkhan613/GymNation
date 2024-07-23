@@ -27,17 +27,13 @@ const getAllPosts = async (req, res) => {
       limit: limit,
     };
   }
+  results.results = await Post.find()
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(startIndex)
+    .exec();
 
-  try {
-    results.results = await Post.find()
-      .sort({ createdAt: -1 })
-      .limit(limit)
-      .skip(startIndex)
-      .exec();
-    res.json(results);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+  res.json(results);
 };
 
 // @desc Get post by ID
@@ -177,6 +173,8 @@ const deletePostById = async (req, res) => {
   //post has been found and deleted
   res.json({ message: "Post deleted" });
 };
+
+//!FIND A WAY TO ADD LIKES AND COMMENTS
 
 module.exports = {
   getAllPosts,

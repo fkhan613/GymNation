@@ -32,6 +32,7 @@ app.use("/", require("./routes/root"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/posts", require("./routes/postRoutes"));
 app.use("/workouts", require("./routes/workoutRoutes"));
+app.use("/groups", require("./routes/groupRoutes"));
 /* End Routes */
 
 
