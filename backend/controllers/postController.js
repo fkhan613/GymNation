@@ -74,6 +74,13 @@ const createNewPost = async (req, res) => {
     return res.status(400).json({ message: "User ID and Image Required" });
   }
 
+  //check if the user exists
+  const user = await User.findById(userId).lean().exec();
+
+  if (!user) {
+    return res.status(404).json({ message: "Post owner not found" });
+  }
+
   //check if the tags is an array of strings
   if (tags && !Array.isArray(tags)) {
     return res
@@ -104,6 +111,13 @@ const updatePostById = async (req, res) => {
   // Validate data
   if (!id || !image) {
     return res.status(400).json({ message: "Post ID and Image Required" });
+  }
+
+  //check if the user exists
+  const user = await User.findById(userId).lean().exec();
+
+  if (!user) {
+    return res.status(404).json({ message: "Post owner not found" });
   }
 
   //check if the tags is an array of strings
