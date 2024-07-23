@@ -34,7 +34,7 @@ const getProgressLogs = async (req, res) => {
 //@route GET /progress-logs/:id
 //@access  Private
 
-const getProgressLog = async (req, res) => {
+const getProgressLogById = async (req, res) => {
   const { userId, id } = req.params;
 
   //validate data
@@ -144,4 +144,12 @@ const deleteProgressLog = async (req, res) => {
   await ProgressLog.findByIdAndDelete(id);
 
   res.json({ message: "Progress log deleted" });
+};
+
+module.exports = {
+  getProgressLogs,
+  getProgressLogById,
+  createProgressLog,
+  updateProgressLog,
+  deleteProgressLog,
 };
