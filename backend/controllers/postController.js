@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 // @desc Get all posts, sorted by most recent and paginated
 // @route GET /posts
@@ -127,16 +128,19 @@ const updatePostById = async (req, res) => {
       .json({ message: "Tags must be an array of strings" });
   }
 
-  const updatedPost = await Post.findByIdAndUpdate(
-    id,
-    { caption, image, tags },
-    { new: true }
-  ).exec();
+  const oldPost = await Post.findById(id).exec();
 
   //check if post exists
-  if (!updatedPost) {
+  if (!oldPost) {
     return res.status(404).json({ message: "Post not found" });
   }
+
+  //check if the post belongs to the user
+  if (oldPost.userId !== userId) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const updatedPost = await Post.findByIdAndUpdate(id).exec();
 
   //post has been found and updated, return the updated post
   res.json(updatedPost);
@@ -154,12 +158,21 @@ const deletePostById = async (req, res) => {
     return res.status(400).json({ message: "Post ID Required" });
   }
 
-  const deletedPost = await Post.findByIdAndDelete(id).exec();
+  //get the post to be deleted
+  const deletedPost = await Post.findById(id).exec();
 
   //check if post exists
   if (!deletedPost) {
     return res.status(404).json({ message: "Post not found" });
   }
+
+  //check if the post belongs to the user
+  if (deletedPost.userId !== userId) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  // Delete post
+  await Post.findByIdAndDelete(id);
 
   //post has been found and deleted
   res.json({ message: "Post deleted" });

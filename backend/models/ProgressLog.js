@@ -18,29 +18,27 @@ const progressLogSchema = new mongoose.Schema({
     ref: "Workout",
     required: true,
   },
-  metrics:[
+  metrics: [
     {
-        exerciseId: {
-            type: String,
-            required: true,
-        },
+      exerciseId: {
+        type: String,
+        required: true,
+      },
 
-        sets: {
+      sets: [
+        {
+          weight: {
             type: Number,
             required: true,
-        },
-
-        reps: {
+          },
+          reps: {
             type: Number,
             required: true,
+          },
         },
-
-        weight: {
-            type: Number,
-            required: true,
-        }
-    }
-  ]
+      ],
+    },
+  ],
 });
 
 const ProgressLog = mongoose.model("ProgressLog", progressLogSchema);
