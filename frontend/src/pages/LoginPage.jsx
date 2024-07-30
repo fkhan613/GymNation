@@ -4,7 +4,7 @@ import Header from "../components/LoginPage/Header";
 import useTitle from "../hooks/useTitle";
 
 const LoginPage = () => {
-  useTitle("GymNation | Login");
+  useTitle("Login | GymNation");
   return (
     <div className="min-h-screen bg-gray-100 lg:bg-gray-100 flex flex-col justify-center py-10 sm:px-6 lg:px-8">
       <img className="mx-auto h-20 scale-150 w-auto" src={logo} alt="GymNation Logo" />
