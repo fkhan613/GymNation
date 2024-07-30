@@ -113,8 +113,10 @@ const updateUserById = async (req, res) => {
   user.bio = bio || user.bio;
   user.pfp = pfp || user.pfp;
   user.fitnessGoals = fitnessGoals || user.fitnessGoals;
-  user.password =
-    (password ?? (await bcrypt.hash(password, 10))) || user.password; //if the user enters a new password (password??), hash it, otherwise keep the old password
+
+  if (password) {
+    user.password = await bcrypt.hash(password, 10);
+  }
 
   const result = await user.save();
 

@@ -157,3 +157,8 @@
 20240730	16:18:14	26dd9710-694a-4af4-8dee-3080263e582a	GET	/	undefined
 20240730	16:18:15	35dbcbdf-a7a1-48f7-b547-7c36a6ccd367	GET	/images/gymnation-logo.png	undefined
 20240730	16:18:15	4b6abfad-3a91-4528-b5cc-8a05cc5f9a50	GET	/images/favicon.ico	undefined
+20240730	17:53:07	1b1755c9-5b97-4d9d-a3ce-be2e0f87a49c	POST	/users	undefined
+20240730	17:54:50	7f98c489-f08e-45d3-bcfd-8bb3a71867dc	PATCH	/users	undefined
+20240730	17:55:28	1b53a4ba-c3af-4445-a576-35ab57cd9120	PATCH	/users	undefined
+20240730	17:55:58	222d8fa7-05b2-4114-a41a-b51b3e4c1784	PATCH	/users	undefined
+20240730	17:55:59	8fed1a16-30c0-4256-b98d-50f9181308e3	PATCH	/users	undefined
