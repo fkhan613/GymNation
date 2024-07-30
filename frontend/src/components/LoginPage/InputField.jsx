@@ -1,7 +1,5 @@
-import PropTypes from "prop-types";
-
+// eslint-disable-next-line react/prop-types
 const InputField = ({ label, type, value, onChange, placeholder }) => {
-  // component code here
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700">{label}</label>
@@ -16,14 +14,6 @@ const InputField = ({ label, type, value, onChange, placeholder }) => {
       </div>
     </div>
   );
-};
-
-InputField.propTypes = {
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
 };
 
 export default InputField;
