@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  overflow-y: hidden;
+/* Hide Scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

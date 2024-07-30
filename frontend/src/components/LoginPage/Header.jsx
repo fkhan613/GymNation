@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -6,12 +7,12 @@ const Header = () => {
       </h2>
       <p className="mt-2 text-center text-sm text-gray-600 max-w">
         Or
-        <a
-          href="#"
+        <Link
+          to="/register"
           className="ml-1 font-medium text-blue-600 hover:text-blue-500"
         >
           create an account
-        </a>
+        </Link>
       </p>
     </div>
   );
