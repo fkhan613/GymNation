@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const { generateToken } = require("../utils/jwt");
 
 // @desc Get all users
 // @route GET /users/:id
@@ -147,35 +148,6 @@ const deleteUserById = async (req, res) => {
   const reply = `Username ${user.username} with ID ${user._id} deleted`;
 
   res.json(reply);
-};
-
-//@desc login
-//@route POST /login
-//@access Public
-const login = async (req, res) => {
-  const { email, password } = req.body;
-
-  // Validate data
-  if (!email || !password) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
-
-  // Does the user exist?
-  const user = await User.findOne({ email }).exec();
-
-  if (!user) {
-    return res.status(404).json({ message: "Email or Password incorrect" });
-  }
-
-  // Check password
-  const passwordMatch = await bcrypt.compare(password, user.password);
-
-  if (!passwordMatch) {
-    return res.status(401).json({ message: "Email or Password incorrect" });
-  }
-
-  // Return token
-  res.json({ token: user._id });
 };
 
 //!FIND A WAY TO FOLLOW AND UNFOLLOW USERS
