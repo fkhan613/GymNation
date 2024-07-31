@@ -5,9 +5,9 @@ const { authenticate } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(authenticate, userController.getUserById)
+  .get(userController.getUserById)
   .post(userController.createNewUser)
-  .patch(authenticate, userController.updateUserById)
-  .delete(authenticate, userController.deleteUserById);
+  .patch(userController.updateUserById)
+  .delete(userController.deleteUserById);
 
 module.exports = router;

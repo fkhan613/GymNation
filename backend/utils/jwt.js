@@ -10,9 +10,13 @@ const generateAccessToken = (user) => {
 };
 
 const generateRefreshToken = (user) => {
-  return jwt.sign({ id: user._id, email: user.email }, REFRESH_TOKEN_SECRET, {
-    expiresIn: "7d",
-  });
+  return jwt.sign(
+    { id: user._id, email: user.email },
+    REFRESH_ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "7d",
+    }
+  );
 };
 
 const verifyAccessToken = (token) => {
@@ -20,7 +24,7 @@ const verifyAccessToken = (token) => {
 };
 
 const verifyRefreshToken = (token) => {
-  return jwt.verify(token, REFRESH_TOKEN_SECRET);
+  return jwt.verify(token, REFRESH_ACCESS_TOKEN_SECRET);
 };
 
 module.exports = {

@@ -2,14 +2,38 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import InputField from "./InputField";
 import SocialLogin from "./SocialLogin";
+import { login } from "../../services/users";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
+    // Basic validation
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    try {
+      const response = await login(email, password);
+
+      // Assuming the response contains a token
+      const { token } = response;
+
+      // Store the token (e.g., in localStorage or cookies)
+      localStorage.setItem("token", token);
+
+      // Redirect the user (e.g., to the dashboard)
+      window.location.href = "/dashboard";
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -56,6 +80,8 @@ const LoginForm = () => {
               </Link>
             </div>
           </div>
+          {error && <div className="text-red-500 text-sm">{error}</div>}
+
           <div>
             <button
               type="submit"
