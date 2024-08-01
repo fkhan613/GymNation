@@ -6,10 +6,6 @@ import useTitle from "../hooks/useTitle";
 const LoginPage = () => {
   useTitle("Login | GymNation");
 
-  //check if the user is already logged in
-  if (localStorage.getItem("token")) {
-    window.location.href = "/dashboard";
-  } else {
     return (
       <div className="min-h-screen bg-gray-100 lg:bg-gray-100 flex flex-col justify-center py-10 sm:px-6 lg:px-8">
         <img
@@ -24,6 +20,5 @@ const LoginPage = () => {
       </div>
     );
   }
-};
 
 export default LoginPage;
