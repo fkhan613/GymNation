@@ -13,6 +13,21 @@ export const login = async (email, password) => {
   }
 };
 
+export const register = async (firstName, lastName, email, password, username) => {
+  try {
+    const response = await axios.post(`${API_URL}/users`, {
+      firstName,
+      lastName,
+      email,
+      password,
+      username,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to register");
+  } 
+}
+
 // export const fetchProtectedData = async () => {
 //   const token = localStorage.getItem("token");
 //   try {

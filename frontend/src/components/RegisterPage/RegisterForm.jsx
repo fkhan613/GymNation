@@ -1,6 +1,8 @@
 import { useState } from "react";
 import InputField from "./InputField";
 import SocialLogin from "./SocialLogin";
+import { register } from "../../services/users";
+import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
 const RegisterForm = () => {
@@ -8,15 +10,54 @@ const RegisterForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      //validate inputs
+      if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !password ||
+        !username ||
+        !confirmPassword
+      ) {
+        return toast.error("All fields are required");
+      }
+
+      if (password !== confirmPassword) {
+        return toast.error("Passwords do not match");
+      }
+
+      // eslint-disable-next-line no-unused-vars
+      const user = await register(
+        firstName,
+        lastName,
+        email,
+        password,
+        username
+      );
+
+      if(user){
+        //return back to the login page with success message
+          window.location.href = "/login?register=success";
+      }
+
+    } catch (error) {
+      toast.error(error);
+    }
+  };
 
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md sm:rounded-md shadow-slate-700 justify-center">
       <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <InputField
-            id="first-name"
-            name="first-name"
+            id="firstName"
+            name="firstName"
             type="text"
             placeholder="First Name"
             value={firstName}
@@ -24,8 +65,8 @@ const RegisterForm = () => {
             label={"First Name"}
           />
           <InputField
-            id="last-name"
-            name="last-name"
+            id="lastName"
+            name="lastName"
             type="text"
             placeholder="Last Name"
             value={lastName}
@@ -63,6 +104,8 @@ const RegisterForm = () => {
           <InputField
             id="confirm-password"
             name="confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             type="password"
             placeholder="Confirm Password"
             label={"Confirm Password"}

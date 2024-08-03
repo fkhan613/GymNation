@@ -30,6 +30,8 @@ const getUserById = async (req, res) => {
 const createNewUser = async (req, res) => {
   const { firstName, lastName, email, password, username } = req.body;
 
+  console.log(firstName, lastName, email, password, username);
+
   // Validate data
   if (!firstName || !lastName || !email || !password || !username) {
     return res.status(400).json({ message: "All fields are required" });
