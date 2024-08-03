@@ -4,9 +4,9 @@ import Header from "../components/LoginPage/Header";
 import useTitle from "../hooks/useTitle";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 
 const LoginPage = () => {
   useTitle("Login | GymNation");
@@ -49,19 +49,32 @@ const LoginPage = () => {
     }
   }, [navigate]);
 
-
-
   return (
     <div className="min-h-screen bg-gray-100 lg:bg-gray-100 flex flex-col justify-center py-10 sm:px-6 lg:px-8">
-      <img
-        className="mx-auto h-20 scale-150 w-auto"
+      <motion.img
+        className="mx-auto h-28 scale-150 w-auto hover:cursor-pointer"
         src={logo}
+        onClick={() => navigate("/")}
         alt="GymNation Logo"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
       />
-      <Header />
-      <div className="px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2 }}
+      >
+        <Header />
+      </motion.div>
+      <motion.div
+        className="px-4 sm:px-6 lg:px-8"
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2 }}
+      >
         <LoginForm />
-      </div>
+      </motion.div>
     </div>
   );
 };
