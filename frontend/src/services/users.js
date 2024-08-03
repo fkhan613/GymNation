@@ -13,18 +13,18 @@ export const login = async (email, password) => {
   }
 };
 
-export const fetchProtectedData = async () => {
-  const token = localStorage.getItem("token");
-  try {
-    const response = await axios.get(`${API_URL}/protected`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch protected data"
-    );
-  }
-};
+// export const fetchProtectedData = async () => {
+//   const token = localStorage.getItem("token");
+//   try {
+//     const response = await axios.get(`${API_URL}/protected`, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(
+//       error.response?.data?.message || "Failed to fetch protected data"
+//     );
+//   }
+// };
