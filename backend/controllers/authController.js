@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
-const { generateAccessToken } = require("../utils/jwt");
+const { generateAccessToken, generateRefreshToken } = require("../utils/jwt");
 const User = require("../models/User");
+const { verifyRefreshToken } = require("../utils/jwt");
 
 //@desc login
 //@route POST /login
@@ -21,11 +22,39 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const token = generateAccessToken(user);
-    res.json({ token: token });
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+    user.refreshToken = refreshToken;
+    await user.save();
+    res.json({ accessToken, refreshToken });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
 
-module.exports = { login };
+//@desc Refresh token
+//@route GET /refresh
+//@access Public
+const refresh = async (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(401).json({ message: "Refresh token is required" });
+  }
+
+  try {
+    const decoded = verifyRefreshToken(token);
+    const user = await User.findById(decoded.id);
+
+    if (!user || user.refreshToken !== token) {
+      return res.status(403).json({ message: "Invalid refresh token" });
+    }
+
+    const accessToken = generateAccessToken(user);
+    res.json({ accessToken });
+  } catch (error) {
+    res.status(403).json({ message: "Invalid refresh token" });
+  }
+};
+
+module.exports = { login, refresh };

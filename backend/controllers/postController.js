@@ -33,7 +33,9 @@ const getAllPosts = async (req, res) => {
     .skip(startIndex)
     .exec();
 
-  res.json(results);
+  res.json({posts: "Here are your posts"});
+
+  // res.json(results);
 };
 
 // @desc Get post by ID

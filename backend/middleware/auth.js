@@ -1,17 +1,24 @@
-const { verifyToken } = require("../utils/jwt");
+const jwt = require("jsonwebtoken");
 
-const authenticate = (req, res, next) => {
-  const token = req.header("Authorization").replace("Bearer ", "");
+const protect = (req, res, next) => {
+  console.log("Headers:", req.headers); // Log the headers
 
-  try {
-    const decoded = verifyToken(token);
-    req.user = decoded; // Attach user info to request
-    next();
-  } catch (error) {
-    res.status(401).json({ message: "Unauthorized" });
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  console.log("Token:", token); // Log the token
+
+  if (!token) {
+    return res.sendStatus(401);
   }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
+    req.user = user;
+    next();
+  });
 };
 
-module.exports = {authenticate};
-
-
+module.exports = { protect };

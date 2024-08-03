@@ -19,9 +19,6 @@ const generateRefreshToken = (user) => {
   );
 };
 
-const verifyAccessToken = (token) => {
-  return jwt.verify(token, ACCESS_TOKEN_SECRET);
-};
 
 const verifyRefreshToken = (token) => {
   return jwt.verify(token, REFRESH_ACCESS_TOKEN_SECRET);
@@ -30,6 +27,5 @@ const verifyRefreshToken = (token) => {
 module.exports = {
   generateAccessToken,
   generateRefreshToken,
-  verifyAccessToken,
   verifyRefreshToken,
 };
