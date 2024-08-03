@@ -421,3 +421,12 @@
 20240802	23:47:14	cf179705-cc4d-44ef-a14f-2e3d421f66fa	GET	/posts	http://localhost:5173
 20240802	23:48:13	29c8fe89-3a4b-4d75-9506-4e53ef5b1f21	OPTIONS	/posts	http://localhost:5173
 20240802	23:48:13	286afe19-92ea-4dd9-b843-f4c86fe490a2	GET	/posts	http://localhost:5173
+20240803	18:54:02	3383c71b-94da-49f8-a77a-ead972c6e486	GET	/	undefined
+20240803	18:54:02	d4555e54-1521-4044-8a93-cf848c922a75	GET	/images/gymnation-logo.png	undefined
+20240803	18:54:03	f36f8819-32ec-42f2-a5a7-9a02b97133fc	GET	/images/favicon.ico	undefined
+20240803	18:54:27	90f5a894-cf50-412c-83e0-fb7cdc1aa114	OPTIONS	/auth/login	http://localhost:5173
+20240803	18:54:27	dbebb5cc-82a1-48ff-8463-bb652829a3b0	POST	/auth/login	http://localhost:5173
+20240803	18:54:27	6f28ad31-930b-4248-b6cb-adc68141c8c7	OPTIONS	/posts	http://localhost:5173
+20240803	18:54:27	08b3261e-89b5-44c9-863a-263d758ed481	GET	/posts	http://localhost:5173
+20240803	18:55:04	76e7ec48-910b-4a53-b5a9-e2012768f3bf	OPTIONS	/posts	http://localhost:5173
+20240803	18:55:04	11d73ab2-071c-4647-ad1d-3c542d3b2c55	GET	/posts	http://localhost:5173
