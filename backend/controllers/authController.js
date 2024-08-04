@@ -57,4 +57,27 @@ const refresh = async (req, res) => {
   }
 };
 
-module.exports = { login, refresh };
+const logout = async (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(401).json({ message: "Refresh token is required" });
+  }
+
+  try {
+    const decoded = verifyRefreshToken(token);
+    const user = await User.findById(decoded.id);
+
+    if (!user || user.refreshToken !== token) {
+      return res.status(403).json({ message: "Invalid refresh token" });
+    }
+
+    user.refreshToken = "";
+    await user.save();
+    res.json({ message: "Logout successful" });
+  } catch (error) {
+    res.status(403).json({ message: "Invalid refresh token" });
+  }
+}
+
+module.exports = { login, refresh, logout };

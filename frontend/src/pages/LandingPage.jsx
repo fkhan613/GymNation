@@ -96,7 +96,7 @@ const LandingPage = () => {
           />
         </div>
         <motion.h1
-          className="text-4xl font-bold text-gray-800"
+          className="text-4xl font-bold text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -104,7 +104,7 @@ const LandingPage = () => {
           Welcome to GymNation
         </motion.h1>
         <motion.p
-          className="text-lg text-gray-800 mt-4 font-semibold"
+          className="text-lg text-white mt-4 font-semibold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}

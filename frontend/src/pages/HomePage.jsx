@@ -1,14 +1,12 @@
-
-import useTitle from "../hooks/useTitle";
+import useTitle from "../hooks/useTitle"
 
 const HomePage = () => {
 
-  useTitle("Home | GymNation");
+  useTitle("Home | GymNation")
 
+  return (
+    <div>HomePage</div>
+  )
+}
 
-
-
-  return <div>HomePage</div>;
-};
-
-export default HomePage;
+export default HomePage
