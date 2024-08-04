@@ -430,3 +430,9 @@
 20240803	18:54:27	08b3261e-89b5-44c9-863a-263d758ed481	GET	/posts	http://localhost:5173
 20240803	18:55:04	76e7ec48-910b-4a53-b5a9-e2012768f3bf	OPTIONS	/posts	http://localhost:5173
 20240803	18:55:04	11d73ab2-071c-4647-ad1d-3c542d3b2c55	GET	/posts	http://localhost:5173
+20240803	21:09:16	e344458e-a07e-43f8-ae67-1d285dd24f85	OPTIONS	/auth/login	http://localhost:5173
+20240803	21:09:16	577183dc-3469-41cc-8460-ce70cd63f03c	POST	/auth/login	http://localhost:5173
+20240803	21:10:03	9327f33a-b236-44a6-999b-e2d58a5023fc	OPTIONS	/posts	http://localhost:5173
+20240803	21:10:03	0af3d189-a87a-4097-a050-c8017b080961	GET	/posts	http://localhost:5173
+20240803	21:18:00	8d55ed64-4dba-4ef2-be4f-02d9508f5900	OPTIONS	/auth/login	http://localhost:5173
+20240803	21:18:00	dc272093-c43f-4d70-8c74-bb955a40377d	POST	/auth/login	http://localhost:5173
