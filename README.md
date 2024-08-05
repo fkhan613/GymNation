@@ -16,6 +16,7 @@ This is a basic readme, currently being used to keep track of the technologies a
 - User can view other users' workouts
 - User can log workouts and view their workout history
 - User can learn about different exercises and add them to their workout routines, provided by the ExerciseDB API
+- Some sort of gamification involving achievements and badges
 
 
 ## Technologies Used
