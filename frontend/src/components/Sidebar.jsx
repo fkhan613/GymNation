@@ -214,7 +214,7 @@ const Sidebar = () => {
           </List>
           <Alert
             open={openAlert}
-            className="mt-auto"
+            className="mt-auto bg-indigo-600"
             onClose={() => setOpenAlert(false)}
           >
             <CubeTransparentIcon className="mb-4 h-12 w-12" />
