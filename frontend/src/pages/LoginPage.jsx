@@ -30,6 +30,7 @@ const LoginPage = () => {
     }
   }, []);
 
+  //this is to check if the user is already logged in and redirect them to the dashboard 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
