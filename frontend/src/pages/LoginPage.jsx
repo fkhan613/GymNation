@@ -13,6 +13,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  //this is to show a success message when a new account is created then remove it from the link 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const newAccount = params.get("register");
