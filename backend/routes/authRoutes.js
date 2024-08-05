@@ -7,6 +7,4 @@ router.post("/login", login);
 
 router.route("/refresh", refresh);
 
-router.route("/logout",protect, logout);
-
 module.exports = router;

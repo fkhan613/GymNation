@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Sidebar from "../components/Sidebar";
 
 const AppLayout = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const AppLayout = () => {
   }, [navigate]);
   return (
     <>
-      <Navbar />
+      <Sidebar/>
       <Outlet />
     </>
   );

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/gymnation-logo.png";
 
-const Navbar = () => {
 
+const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     window.location.href = "/login";
-  }
+  };
 
   return (
     <nav className="bg-white">
@@ -32,3 +32,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
