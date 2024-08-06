@@ -24,10 +24,11 @@ const LoginForm = () => {
       const response = await login(email, password);
 
       // Assuming the response contains a token
-      const { accessToken } = response;
+      const { accessToken, user } = response;
 
       // Store the token (e.g., in localStorage or cookies)
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
 
       // Redirect the user (e.g., to the dashboard)
       window.location.href = "/dashboard";

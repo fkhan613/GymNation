@@ -26,7 +26,8 @@ const login = async (req, res) => {
     const refreshToken = generateRefreshToken(user);
     user.refreshToken = refreshToken;
     await user.save();
-    res.json({ accessToken, refreshToken });
+    user.password = undefined;
+    res.json({ accessToken, refreshToken, user });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -57,4 +58,4 @@ const refresh = async (req, res) => {
   }
 };
 
-module.exports = { login, refresh, logout };
+module.exports = { login, refresh };

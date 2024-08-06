@@ -476,3 +476,9 @@
 20240805	16:47:40	523d974c-5aea-4969-a9d6-8e241a2d8123	OPTIONS	/auth/login	http://localhost:5173
 20240805	16:47:40	3a6b3136-1381-4f50-85cd-d69a4f0eb6d1	POST	/auth/login	http://localhost:5173
 20240805	16:47:44	3c0898ea-eb12-445e-912e-d86436a083ae	POST	/auth/login	http://localhost:5173
+20240805	23:36:41	ca4b527b-9ec1-4b6a-a288-3f32b118fab2	OPTIONS	/auth/login	http://localhost:5173
+20240805	23:36:41	fc3819ea-027f-40a7-ad72-1dc8be5554a3	POST	/auth/login	http://localhost:5173
+20240805	23:39:55	d15bf364-f8c3-44b6-91cc-79c26038f17c	OPTIONS	/auth/login	http://localhost:5173
+20240805	23:39:55	1d99df94-b03e-4417-95d8-5bab65875132	POST	/auth/login	http://localhost:5173
+20240805	23:40:12	91555df9-77fb-446c-9706-dffb96f257f9	OPTIONS	/auth/login	http://localhost:5173
+20240805	23:40:12	04608e21-3b5e-4b93-8343-e6d1a0fad0c9	POST	/auth/login	http://localhost:5173

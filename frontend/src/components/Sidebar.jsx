@@ -42,6 +42,7 @@ const Sidebar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
     window.location.href = "/login";
   };
 
