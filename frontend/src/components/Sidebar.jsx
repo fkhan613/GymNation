@@ -17,11 +17,11 @@ import {
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
-  ShoppingBagIcon,
   UserCircleIcon,
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
+  BoltIcon
 } from "@heroicons/react/24/solid";
 import {
   ChevronRightIcon,
@@ -55,14 +55,24 @@ const Sidebar = () => {
 
   return (
     <>
-      <IconButton variant="text" size="lg" onClick={openDrawer} onMouseOver={openDrawer}>
+      <IconButton
+        variant="text"
+        size="lg"
+        onClick={openDrawer}
+        onMouseOver={openDrawer}
+      >
         {isDrawerOpen ? (
           <XMarkIcon className="h-8 w-8 stroke-2" />
         ) : (
           <Bars3Icon className="h-8 w-8 stroke-2" />
         )}
       </IconButton>
-      <Drawer open={isDrawerOpen} onClose={closeDrawer} onMouseLeave={closeDrawer}>
+
+      <Drawer
+        open={isDrawerOpen}
+        onClose={closeDrawer}
+        onMouseLeave={closeDrawer}
+      >
         <Card
           color="transparent"
           shadow={false}
@@ -85,55 +95,14 @@ const Sidebar = () => {
             />
           </div>
           <List>
-            <Accordion
-              open={open === 1}
-              icon={
-                <ChevronDownIcon
-                  strokeWidth={2.5}
-                  className={`mx-auto h-4 w-4 transition-transform ${
-                    open === 1 ? "rotate-180" : ""
-                  }`}
-                />
-              }
-            >
-              <ListItem className="p-0" selected={open === 1}>
-                <AccordionHeader
-                  onClick={() => handleOpen(1)}
-                  className="border-b-0 p-3"
-                >
-                  <ListItemPrefix>
-                    <PresentationChartBarIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  <Typography color="blue-gray" className="mr-auto font-normal">
-                    Dashboard
-                  </Typography>
-                </AccordionHeader>
-              </ListItem>
-              {/* Start Dropdown */}
-              <AccordionBody className="py-1">
-                <List className="p-0">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Item 1
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Item 2
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Item 3
-                  </ListItem>
-                </List>
-              </AccordionBody>
-              {/* Start Dropdown */}
-            </Accordion>
+            <ListItem className="border-b-0 p-3" selected={open === 1}>
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Dashboard
+              </Typography>
+            </ListItem>
             <Accordion
               open={open === 2}
               icon={
@@ -151,7 +120,7 @@ const Sidebar = () => {
                   className="border-b-0 p-3"
                 >
                   <ListItemPrefix>
-                    <ShoppingBagIcon className="h-5 w-5" />
+                    <BoltIcon className="h-5 w-5" />
                   </ListItemPrefix>
                   <Typography color="blue-gray" className="mr-auto font-normal">
                     Workouts
