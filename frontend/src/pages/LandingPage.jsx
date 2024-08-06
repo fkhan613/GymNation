@@ -3,7 +3,7 @@ import Background from "../components/LandingPage/Background";
 import HeroText from "../components/LandingPage/HeroText";
 
 const LandingPage = () => {
-  useTitle("GymNation | Connecting Fitness Enthusiasts");
+  useTitle(import.meta.env.VITE_APP_NAME + " | Connecting Fitness Enthusiasts");
 
   return (
     <div>

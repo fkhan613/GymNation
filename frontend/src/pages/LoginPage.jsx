@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const LoginPage = () => {
-  useTitle("Login | GymNation");
+  useTitle("Login | " + import.meta.env.VITE_APP_NAME);
 
   const navigate = useNavigate();
 

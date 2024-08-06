@@ -6,9 +6,9 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import UserProfilePage from "./pages/UserProfilePage";
-import CreateWorkoutPage from "./pages/CreateWorkoutPage";
-import EditWorkoutPage from "./pages/EditWorkoutPage";
-import WorkoutsPage from "./pages/WorkoutsPage";
+import CreateWorkoutPage from "./pages/Workouts/CreateWorkoutPage";
+import EditWorkoutPage from "./pages/Workouts/EditWorkoutPage";
+import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
 
 function App() {
   return (

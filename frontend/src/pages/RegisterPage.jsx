@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const RegisterPage = () => {
-  useTitle("Register | GymNation");
+  useTitle("Register | " + import.meta.env.VITE_APP_NAME);
 
   const navigate = useNavigate();
 
