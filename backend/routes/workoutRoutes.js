@@ -1,13 +1,14 @@
 const workoutController = require("../controllers/workoutController");
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(workoutController.getAllWorkouts)
-  .post(workoutController.createNewWorkout)
-  .patch(workoutController.updateWorkoutById)
-  .delete(workoutController.deleteWorkoutById);
+  .get(protect, workoutController.getAllWorkouts)
+  .post(protect, workoutController.createNewWorkout)
+  .patch(protect, workoutController.updateWorkoutById)
+  .delete(protect, workoutController.deleteWorkoutById);
 
 router.route("/:id").get(workoutController.getWorkoutById);
 

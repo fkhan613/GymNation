@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:3500";
+const API_URL = import.meta.env.VITE_APP_API_URL;
 
 export const login = async (email, password) => {
   try {
