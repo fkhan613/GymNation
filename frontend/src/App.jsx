@@ -5,7 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import UserProfilePage from "./pages/UserProfilePage";
+import UserProfilePage from "./pages/Users/UserProfilePage";
 import CreateWorkoutPage from "./pages/Workouts/CreateWorkoutPage";
 import EditWorkoutPage from "./pages/Workouts/EditWorkoutPage";
 import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
