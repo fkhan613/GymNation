@@ -21,10 +21,10 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
-  BoltIcon
+  BoltIcon,
+  PlusIcon,
 } from "@heroicons/react/24/solid";
 import {
-  ChevronRightIcon,
   ChevronDownIcon,
   CubeTransparentIcon,
   MagnifyingGlassIcon,
@@ -131,21 +131,17 @@ const Sidebar = () => {
               {/* Start Dropdown */}
               <AccordionBody className="py-1">
                 <List className="p-0">
+                  {/* Need to make this dynamic */}
                   <ListItem>
                     <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                      <PlusIcon strokeWidth={6} className="h-3 w-5" />
                     </ListItemPrefix>
                     Workout 1
                   </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Workout 2
-                  </ListItem>
+                  {/* Need to make this dynamic */}
                 </List>
               </AccordionBody>
-              {/* Start Dropdown */}
+              {/* End Dropdown */}
             </Accordion>
             <hr className="my-2 border-blue-gray-50" />
             <ListItem>
