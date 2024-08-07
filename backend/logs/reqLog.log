@@ -495,3 +495,14 @@
 20240806	13:42:10	f708f864-d53a-461b-af31-fa6c8503a5fe	POST	/auth/login	http://localhost:5173
 20240806	14:40:11	e3475b02-9975-4519-b978-f5b25724e1b6	OPTIONS	/auth/login	http://localhost:5173
 20240806	14:40:11	c39fba10-21ae-43b4-b92a-03d34e3721f9	POST	/auth/login	http://localhost:5173
+20240807	00:00:27	fe38afea-fea9-46cb-ba18-282cb40436d8	OPTIONS	/auth/login	http://localhost:5173
+20240807	00:00:27	485ce696-60b3-4589-8b6b-1c609d57a1f3	POST	/auth/login	http://localhost:5173
+20240807	12:47:18	1157b78b-5380-4120-82c3-6b71bc712e89	GET	/	undefined
+20240807	12:47:18	850773e3-317b-4e64-9573-18263bac49cf	GET	/images/gymnation-logo.png	undefined
+20240807	12:47:18	e96b0727-f386-4044-93bb-92477042607d	GET	/images/favicon.ico	undefined
+20240807	12:48:27	065f86fc-7091-4607-b2aa-5b0a7cbb97be	OPTIONS	/auth/login	http://localhost:5173
+20240807	12:48:27	df25aac0-e22b-4ce0-9643-cfae27e22545	POST	/auth/login	http://localhost:5173
+20240807	12:51:39	27b3b3bf-dfd6-49f6-b67f-77fa2b5ccf0b	OPTIONS	/auth/login	http://localhost:5173
+20240807	12:51:39	b2bbb53d-74be-448a-bc23-892797f3b7e1	POST	/auth/login	http://localhost:5173
+20240807	12:51:56	b4416d05-2c8e-4b2f-99b9-12cac7228926	OPTIONS	/auth/login	http://localhost:5173
+20240807	12:51:56	f488d354-d569-432b-94ff-90cfe8d3f0c3	POST	/auth/login	http://localhost:5173

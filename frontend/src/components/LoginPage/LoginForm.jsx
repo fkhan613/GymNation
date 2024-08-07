@@ -21,7 +21,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await login(email, password);
+      const response = await login(email, password, rememberMe);
 
       // Assuming the response contains a token
       const { accessToken, user } = response;

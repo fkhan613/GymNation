@@ -7,7 +7,7 @@ const { verifyRefreshToken } = require("../utils/jwt");
 //@route POST /login
 //@access Public
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, rememberMe } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -22,7 +22,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const accessToken = generateAccessToken(user);
+    const accessToken = generateAccessToken(user, rememberMe);
     const refreshToken = generateRefreshToken(user);
     user.refreshToken = refreshToken;
     await user.save();
