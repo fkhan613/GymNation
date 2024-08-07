@@ -31,7 +31,8 @@ const AppLayout = () => {
   }, [navigate]);
   return (
     <>
-      <Sidebar/>
+      <Sidebar />
+
       <Outlet />
     </>
   );

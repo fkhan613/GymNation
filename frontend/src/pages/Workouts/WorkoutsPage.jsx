@@ -10,6 +10,7 @@ import {
 import SearchBar from "../../components/WorkoutsPage/SearchBar";
 import ExerciseCard from "../../components/WorkoutsPage/ExerciseCard";
 import { useLocation } from "react-router-dom";
+import { Typography } from "@material-tailwind/react";
 
 const WorkoutsPage = () => {
   useTitle("Workouts | " + import.meta.env.VITE_APP_NAME);
@@ -60,8 +61,16 @@ const WorkoutsPage = () => {
 
   return (
     <div className="flex flex-col items-center m-10 relative">
+      <Typography variant="h2" color="blue-gray" className="mb-10">
+        Workouts
+      </Typography>
       <SearchBar />
+
       <div className="flex flex-row flex-wrap justify-center mt-16">
+        {/* Check if the user has workouts */}
+        {/* Display the workouts in cards if they do, if not display no workouts found */}
+
+        {/* Move this to its own page */}
         {exercises.map((exercise) => (
           <ExerciseCard
             key={exercise.id}
@@ -74,6 +83,7 @@ const WorkoutsPage = () => {
             gifUrl={exercise.gifUrl}
           />
         ))}
+        {/* Move this to its own page */}
       </div>
     </div>
   );
