@@ -40,7 +40,7 @@ const Sidebar = () => {
     e.preventDefault();
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   // eslint-disable-next-line no-unused-vars

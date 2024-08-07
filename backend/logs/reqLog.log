@@ -506,3 +506,5 @@
 20240807	12:51:39	b2bbb53d-74be-448a-bc23-892797f3b7e1	POST	/auth/login	http://localhost:5173
 20240807	12:51:56	b4416d05-2c8e-4b2f-99b9-12cac7228926	OPTIONS	/auth/login	http://localhost:5173
 20240807	12:51:56	f488d354-d569-432b-94ff-90cfe8d3f0c3	POST	/auth/login	http://localhost:5173
+20240807	16:53:00	9555c8f5-753e-4fc3-adc5-9537375876e5	OPTIONS	/auth/login	http://localhost:5173
+20240807	16:53:00	96044476-da14-490d-a077-5a21b8975be2	POST	/auth/login	http://localhost:5173

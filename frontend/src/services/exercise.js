@@ -2,7 +2,7 @@ import axios from "axios";
 const RAPID_API_KEY = import.meta.env.VITE_RAPID_API_KEY;
 const RAPID_API_HOST = import.meta.env.VITE_RAPID_API_HOST;
 
-export const fetchExercises = async (page) => {
+export const fetchExercises = async (page = 1) => {
   const limit = 50;
   const offset = (page - 1) * limit;
 
@@ -21,13 +21,13 @@ export const fetchExercises = async (page) => {
 
   try {
     const response = await axios.request(options);
-    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const fetchExerciseByName = async (name, page) => {
+export const fetchExerciseByName = async (name, page = 1) => {
   const parsedSearch = name.replace(" ", "%20");
   const limit = 50;
   const offset = (page - 1) * limit;
@@ -89,7 +89,7 @@ export const fetchBodyParts = async () => {
   }
 };
 
-export const fetchExerciseByBodyPart = async (bodyPart, page) => {
+export const fetchExerciseByBodyPart = async (bodyPart, page=1) => {
   const parsedSearch = bodyPart.replace(" ", "%20");
   const limit = 50;
   const offset = (page - 1) * limit;
@@ -133,7 +133,7 @@ export const fetchEquipment = async () => {
   }
 };
 
-export const fetchExerciseByEquipment = async (equipment, page) => {
+export const fetchExerciseByEquipment = async (equipment, page=1) => {
   const parsedSearch = equipment.replace(" ", "%20");
   const limit = 50;
   const offset = (page - 1) * limit;
@@ -144,7 +144,7 @@ export const fetchExerciseByEquipment = async (equipment, page) => {
       "https://exercisedb.p.rapidapi.com/exercises/equipment/" + parsedSearch,
     params: {
       limit: limit.toString(),
-      offset: offset.toString,
+      offset: offset.toString(),
     },
     headers: {
       "x-rapidapi-key": RAPID_API_KEY,
@@ -178,7 +178,7 @@ export const fetchTargetMuscles = async () => {
   }
 };
 
-export const fetchExerciseByTargetMuscle = async (targetMuscle, page) => {
+export const fetchExerciseByTargetMuscle = async (targetMuscle, page=1) => {
   const parsedSearch = targetMuscle.replace(" ", "%20");
   const limit = 50;
   const offset = (page - 1) * limit;
