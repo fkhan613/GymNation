@@ -27,6 +27,9 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+
 import logo from "../assets/gymnation-logo.png";
 import { useNavigate } from "react-router-dom";
 
@@ -112,7 +115,7 @@ const Sidebar = () => {
 
             <ListItem
               onClick={() => {
-                closeDrawer() 
+                closeDrawer();
                 navigate("/dashboard/workouts");
               }}
             >
@@ -120,6 +123,17 @@ const Sidebar = () => {
                 <BoltIcon className="h-5 w-5" />
               </ListItemPrefix>
               Workouts
+            </ListItem>
+            <ListItem
+              onClick={() => {
+                closeDrawer();
+                navigate("/dashboard/exercises");
+              }}
+            >
+              <ListItemPrefix>
+                <FontAwesomeIcon icon={faDumbbell} className="h-5 w-5" />
+              </ListItemPrefix>
+              Exercises
             </ListItem>
             <hr className="my-2 border-blue-gray-50" />
             <ListItem>

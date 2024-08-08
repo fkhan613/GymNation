@@ -508,3 +508,8 @@
 20240807	12:51:56	f488d354-d569-432b-94ff-90cfe8d3f0c3	POST	/auth/login	http://localhost:5173
 20240807	16:53:00	9555c8f5-753e-4fc3-adc5-9537375876e5	OPTIONS	/auth/login	http://localhost:5173
 20240807	16:53:00	96044476-da14-490d-a077-5a21b8975be2	POST	/auth/login	http://localhost:5173
+20240808	14:05:16	26075cab-54ad-46a8-9288-2d5e05efcabe	OPTIONS	/auth/login	http://localhost:5173
+20240808	14:05:16	a2e93561-d64b-411a-a4b4-6ae532da77ed	POST	/auth/login	http://localhost:5173
+20240808	14:07:28	bc048ec0-71f8-4368-bc87-e8e42b709831	GET	/	undefined
+20240808	14:07:28	79f40250-6f79-4d48-9339-c8612a6c4d31	GET	/images/gymnation-logo.png	undefined
+20240808	14:07:28	ea457238-f331-4045-b38c-15335b81e13b	GET	/images/favicon.ico	undefined
