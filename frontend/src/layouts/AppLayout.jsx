@@ -10,8 +10,9 @@ const AppLayout = () => {
   // Check if the user is logged in
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("user");
 
-    if (!token) {
+    if (!token || !user) {
       navigate("/login");
     }
 

@@ -16,11 +16,30 @@ const workoutSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    coverPhoto: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dr2xuaa6e/image/upload/v1723169756/default-workout-img.png",
+    },
     exercises: [
-      // Array of exercise ids from the ExerciseDB API
       {
-        type: String,
-        required: true,
+        exerciseId: {
+          type: String,
+          required: true,
+        },
+
+        sets: [
+          {
+            weight: {
+              type: Number,
+              required: true,
+            },
+            reps: {
+              type: Number,
+              required: true,
+            },
+          },
+        ],
       },
     ],
   },

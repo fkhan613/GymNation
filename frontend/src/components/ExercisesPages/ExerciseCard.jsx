@@ -6,7 +6,6 @@ import {
   CardBody,
   Typography,
   Button,
-  CardHeader,
 } from "@material-tailwind/react";
 
 const ExerciseCard = ({
@@ -34,7 +33,7 @@ const ExerciseCard = ({
       </CardBody>
       <CardFooter className="pt-0">
         <div className="flex gap-4">
-          <Button className=" bg-blue-gray-400 hover:bg-blue-gray-500">
+          <Button className=" bg-gray-900 hover:bg-blue-gray-700">
             View Instructions
           </Button>
           <Button className=" bg-indigo-500 hover:bg-indigo-600">

@@ -6,7 +6,7 @@ const User = require("../models/User");
 // @access private
 
 const getAllWorkouts = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.query;
 
   // Validate data
   if (!userId) {
