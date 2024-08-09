@@ -513,3 +513,5 @@
 20240808	14:07:28	bc048ec0-71f8-4368-bc87-e8e42b709831	GET	/	undefined
 20240808	14:07:28	79f40250-6f79-4d48-9339-c8612a6c4d31	GET	/images/gymnation-logo.png	undefined
 20240808	14:07:28	ea457238-f331-4045-b38c-15335b81e13b	GET	/images/favicon.ico	undefined
+20240808	20:52:09	266a744f-2d28-45e4-9a53-87874f0675da	OPTIONS	/auth/login	http://localhost:5173
+20240808	20:52:09	f8290998-ec89-4fd5-a15e-20b58d4071ef	POST	/auth/login	http://localhost:5173

@@ -66,12 +66,11 @@ const ExercisesPage = () => {
   return (
     <div className="flex flex-col items-center m-10 relative">
       <Typography variant="h2" color="blue-gray" className="mb-10">
-        Workouts
+        Explore Exercises
       </Typography>
       <SearchBar />
 
       <div className="flex flex-row flex-wrap justify-center mt-16">
-        {/* Move this to its own page */}
         {exercises.map((exercise) => (
           <ExerciseCard
             key={exercise.id}
@@ -84,7 +83,6 @@ const ExercisesPage = () => {
             gifUrl={exercise.gifUrl}
           />
         ))}
-        {/* Move this to its own page */}
       </div>
 
       {<PulseLoader color="#2563EB" className=" mt-16" loading={loading} size={15} />}
