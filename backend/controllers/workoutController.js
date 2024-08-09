@@ -58,7 +58,7 @@ const getWorkoutById = async (req, res) => {
 // @access private
 
 const createNewWorkout = async (req, res) => {
-  const { userId, name, descriptions, exercises } = req.body;
+  const { userId, name, description, exercises } = req.body;
 
   // Validate data
   if (!userId || !name || !exercises) {
@@ -85,7 +85,7 @@ const createNewWorkout = async (req, res) => {
   const newWorkout = new Workout({
     userId,
     name,
-    descriptions,
+    description,
     exercises,
   });
 
@@ -99,7 +99,7 @@ const createNewWorkout = async (req, res) => {
 // @access private
 
 const updateWorkoutById = async (req, res) => {
-  const { id, userId, name, descriptions, exercises } = req.body;
+  const { id, userId, name, description, exercises } = req.body;
 
   // Validate data
   if (!id || !userId) {
@@ -126,7 +126,7 @@ const updateWorkoutById = async (req, res) => {
   }
 
   // Update workout
-  await Workout.findByIdAndUpdate(id, { name, descriptions, exercises });
+  await Workout.findByIdAndUpdate(id, { name, description, exercises });
 
   res.json({ message: "Workout updated" });
 };

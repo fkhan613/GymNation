@@ -7,30 +7,30 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-import ExercisesModal from "./ExercisesModal";
+import { useState } from "react";
 
-const WorkoutCard = ({name, description, exercises, coverPhoto}) => {
+
+const WorkoutCard = ({ name, description, exercises, coverPhoto }) => {
+
   return (
     <Card className=" m-10 max-w-72">
       <img className=" max-w-60 mx-auto" src={coverPhoto} alt={name} />
 
-      <CardBody className="">
-        <Typography variant="h5" color="blue-gray" className="mb-2">
+      <CardBody classNameName="">
+        <Typography variant="h5" color="blue-gray" classNameName="mb-2">
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </Typography>
-        <Typography>{description}</Typography>
+        <Typography variant="h5" color="blue-gray" classNameName="mb-2">
+          {description}
+        </Typography>
       </CardBody>
-      <CardFooter className="pt-0">
+      <CardFooter classNameName="pt-0">
         <div className="flex gap-4">
-          <Button
-            className="select-none rounded-lg bg-gray-900 hover:bg-blue-gray-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button"
-            data-dialog-target="sign-in-dialog"
-          >
-             View Exercises
-          </Button>
           <Button className=" bg-indigo-500 hover:bg-indigo-600">
             Edit Workout
+          </Button>
+          <Button className=" bg-deep-orange-800 hover:bg-deep-orange-900">
+            Delete Workout
           </Button>
         </div>
       </CardFooter>

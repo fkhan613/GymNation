@@ -45,7 +45,6 @@ const WorkoutsPage = () => {
               exercises={workout.exercises}
               coverPhoto={workout.coverPhoto}
             />
-
           ))
         ) : (
           <Typography variant="h5" color="blue-gray" className="mb-10">
