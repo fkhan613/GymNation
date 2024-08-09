@@ -10,6 +10,6 @@ router
   .patch(protect, workoutController.updateWorkoutById)
   .delete(protect, workoutController.deleteWorkoutById);
 
-router.route("/:id").get(workoutController.getWorkoutById);
+router.route("/:id").get(protect, workoutController.getWorkoutById);
 
 module.exports = router;

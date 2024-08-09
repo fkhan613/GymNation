@@ -1,4 +1,4 @@
-const Workout = require("../models/Workout");
+const Workout = require("../models/UserWorkout");
 const User = require("../models/User");
 
 // @desc Get all workouts the user has created. Ex. Push days, Pull days, Leg days

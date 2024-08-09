@@ -14,7 +14,6 @@ import SearchBar from "../../components/ExercisesPages/SearchBar";
 import { Typography } from "@material-tailwind/react";
 import PulseLoader from "react-spinners/PulseLoader";
 
-
 const ExercisesPage = () => {
   useTitle("Exercises | " + import.meta.env.VITE_APP_NAME);
 
@@ -85,7 +84,12 @@ const ExercisesPage = () => {
         ))}
       </div>
 
-      {<PulseLoader color="#2563EB" className=" mt-16" loading={loading} size={15} />}
+      <PulseLoader
+        color="#2563EB"
+        className=" mt-24"
+        loading={loading}
+        size={15}
+      />
     </div>
   );
 };
