@@ -21,7 +21,7 @@ const ExerciseCard = ({
     <Card className=" m-10 max-w-96">
       <img className="w-auto" src={gifUrl} alt={name} />
 
-      <CardBody className="">
+      <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {name.toUpperCase()}
         </Typography>

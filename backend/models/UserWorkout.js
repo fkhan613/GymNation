@@ -23,23 +23,53 @@ const workoutSchema = new mongoose.Schema(
     },
     exercises: [
       {
-        exerciseId: {
-          type: String,
-          required: true,
-        },
-
-        sets: [
-          {
-            weight: {
-              type: Number,
-              required: true,
-            },
-            reps: {
-              type: Number,
-              required: true,
-            },
+        exercise: {
+          bodyPart: {
+            type: String,
+            required: true,
           },
-        ],
+          equipment: {
+            type: String,
+            required: true,
+          },
+          gifUrl: {
+            type: String,
+            required: true,
+          },
+          name: {
+            type: String,
+            required: true,
+          },
+          target: {
+            type: String,
+            required: true,
+          },
+          secondaryMuscles: {
+            type: [String],
+            required: true,
+          },
+          instructions: {
+            type: [String],
+            required: true,
+          },
+          id: {
+            type: String,
+            required: true,
+          },
+
+          sets: [
+            {
+              weight: {
+                type: Number,
+                required: true,
+              },
+              reps: {
+                type: Number,
+                required: true,
+              },
+            },
+          ],
+        },
       },
     ],
   },

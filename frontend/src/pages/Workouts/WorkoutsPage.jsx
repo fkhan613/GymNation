@@ -30,12 +30,12 @@ const WorkoutsPage = () => {
 
 
   return (
-    <div className="flex flex-col items-center m-10 relative">
+    <div className="flex flex-col items-center m-8 relative">
       <Typography variant="h2" color="blue-gray" className="mb-10">
         Your Workouts
       </Typography>
 
-      <div className="flex flex-row flex-wrap justify-center mt-16">
+      <div className="flex flex-row flex-wrap justify-center mt-6">
         {workouts.length > 0 ? (
           workouts.map((workout) => (
             <WorkoutCard
