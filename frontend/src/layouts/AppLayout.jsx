@@ -33,7 +33,6 @@ const AppLayout = () => {
   return (
     <>
       <Sidebar />
-
       <Outlet />
     </>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Select, Option, Input, Button } from "@material-tailwind/react";
 import {
@@ -6,10 +7,10 @@ import {
   equipment,
 } from "../../config/exerciseSearchCats";
 
-const SearchBar = () => {
-  const [search, setSearch] = useState("");
-  const [select, setSelect] = useState("name");
-  const [selectCategory, setSelectCategory] = useState("");
+const SearchBar = ({searchTerm="", selectTerm="name", category="" }) => {
+  const [search, setSearch] = useState(searchTerm);
+  const [select, setSelect] = useState(selectTerm);
+  const [selectCategory, setSelectCategory] = useState(category);
 
   return (
     <div className="relative flex gap-6 flex-wrap items-center justify-center w-full">

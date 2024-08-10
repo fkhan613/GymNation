@@ -12,6 +12,7 @@ import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
 import ExercisesPage from "./pages/Exercises/ExercisesPage";
 
 function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
