@@ -1,5 +1,6 @@
 const Workout = require("../models/UserWorkout");
 const User = require("../models/User");
+const cloudinary = require("../config/cloudinaryConfig")
 
 // @desc Get all workouts the user has created. Ex. Push days, Pull days, Leg days
 // @route GET /workouts
@@ -58,7 +59,7 @@ const getWorkoutById = async (req, res) => {
 // @access private
 
 const createNewWorkout = async (req, res) => {
-  const { userId, name, description, exercises } = req.body;
+  const { userId, name, description, exercises, coverPhoto, visibility } = req.body;
 
   // Validate data
   if (!userId || !name || !exercises) {
@@ -81,12 +82,25 @@ const createNewWorkout = async (req, res) => {
       .json({ message: "Exercises must be an array of strings" });
   }
 
+  //convert the cover photo file into a url using cloudinary
+  let coverPhotoUrl = null;
+  if (coverPhoto) {
+    const uploadedResponse = await cloudinary.uploader.upload(coverPhoto, {
+      upload_preset: `${userId}_workout_cover_photos`,
+    });
+    coverPhotoUrl = uploadedResponse.url;
+  }
+
+
+
   // Create new workout
   const newWorkout = new Workout({
     userId,
     name,
     description,
     exercises,
+    coverPhoto: coverPhotoUrl,
+    visibility,
   });
 
   await newWorkout.save();

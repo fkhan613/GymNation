@@ -23,7 +23,7 @@ const workoutSchema = new mongoose.Schema(
     },
     visibility: {
       type: String,
-      default: "public",
+      default: "private",
     },
     exercises: [
       {
