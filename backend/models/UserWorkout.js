@@ -21,6 +21,10 @@ const workoutSchema = new mongoose.Schema(
       default:
         "https://res.cloudinary.com/dr2xuaa6e/image/upload/v1723169756/default-workout-img.png",
     },
+    visibility: {
+      type: String,
+      default: "public",
+    },
     exercises: [
       {
         exercise: {

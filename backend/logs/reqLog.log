@@ -843,3 +843,16 @@
 20240809	19:47:01	b953f5df-733f-44c7-aeee-7247ab35a68b	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240809	19:53:12	7a7b1e9a-29cf-4fcc-80a7-672aec4238d0	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240809	19:53:12	eab68c8b-8c9a-47f9-922a-5c789c6e4b8f	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	19:56:23	7d4f705e-08cd-4fc1-be73-9f79d7d50d75	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	19:56:23	4f80d12b-da19-4351-8bae-fe5023b90015	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	19:59:52	e1cb9c31-517d-4586-9ad4-d5e1d921bc46	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	19:59:52	30611d73-f9d0-432b-9d29-7b7358ad5644	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:02:25	6fe97900-cf8c-4ee2-9681-2e7121f471e4	GET	/images/gymnation-logo.png	undefined
+20240809	20:02:43	18f54700-e8e9-49ec-9e03-ff2d747b2d4a	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:02:43	328f1f49-fa1f-4cc6-80ff-332aae9eff0c	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:11:23	c7865f70-5d3f-4e98-98c9-ad2ca8d74656	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:11:24	864d8ca4-9699-4869-8807-a4af34ee1ff6	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:11:48	a6cf2e38-46ee-4b1f-ba30-80800d226695	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:11:48	6163e0ce-15a5-40e0-add7-340c51bb2d34	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:13:37	dc1b7f08-4cd2-4b46-889d-f88b485f3676	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240809	20:13:37	b0f08488-f640-493f-a5ea-aeefbf7aabfb	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
