@@ -1,7 +1,7 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Typography } from "@material-tailwind/react";
-import SearchBar from "../ExercisesPages/SearchBar";
+import SearchBar from "../WorkoutsPage/SearchBar";
 
 const CreateWorkoutForm = () => {
   const [name, setName] = useState("");
@@ -10,9 +10,11 @@ const CreateWorkoutForm = () => {
   const [visibility, setVisibility] = useState("private");
   const [exercises, setExercises] = useState([]);
   const [dragActive, setDragActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [select, setSelect] = useState("");
-  const [selectCategory, setSelectCategory] = useState("");
+
+  const handleSearch = (e, searchTerm, select, selectCategory) => {
+    e.preventDefault();
+    console.log(searchTerm, select, selectCategory);
+  };
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -95,7 +97,6 @@ const CreateWorkoutForm = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 resize-none"
-                    defaultValue={""}
                   />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -223,7 +224,7 @@ const CreateWorkoutForm = () => {
             <p className="mt-1 text-sm leading-6 text-gray-600 mb-6">
               Add exercises to your workout.
             </p>
-            <SearchBar />
+            <SearchBar handleSearch={handleSearch} />
           </div>
         </div>
 

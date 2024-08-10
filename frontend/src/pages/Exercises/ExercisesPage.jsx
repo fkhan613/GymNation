@@ -9,8 +9,8 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
-import ExerciseCard from "../../components/ExercisesPages/ExerciseCard";
-import SearchBar from "../../components/ExercisesPages/SearchBar";
+import ExerciseCard from "../../components/ExercisesPage/ExerciseCard";
+import SearchBar from "../../components/ExercisesPage/SearchBar";
 import { Typography } from "@material-tailwind/react";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -63,36 +63,35 @@ const ExercisesPage = () => {
   }, [location.search]);
 
   return (
-    
-      <div className="flex flex-col items-center m-10 relative">
-        <Typography variant="h2" color="blue-gray" className="mb-10">
-          Explore Exercises
-        </Typography>
-        <SearchBar />
+    <div className="flex flex-col items-center m-10 relative">
+      <Typography variant="h2" color="blue-gray" className="mb-10">
+        Explore Exercises
+      </Typography>
+      <SearchBar />
 
-        <div className="flex flex-row flex-wrap justify-center mt-16">
-          {exercises.map((exercise) => (
-            <ExerciseCard
-              key={exercise.id}
-              id={exercise.id}
-              name={exercise.name}
-              bodyPart={exercise.bodyPart}
-              equipment={exercise.equipment}
-              target={exercise.target}
-              secondaryMuscles={exercise.secondaryMuscles}
-              instructions={exercise.instructions}
-              gifUrl={exercise.gifUrl}
-            />
-          ))}
-        </div>
-
-        <PulseLoader
-          color="#2563EB"
-          className=" mt-24"
-          loading={loading}
-          size={15}
-        />
+      <div className="flex flex-row flex-wrap justify-center mt-16">
+        {exercises.map((exercise) => (
+          <ExerciseCard
+            key={exercise.id}
+            id={exercise.id}
+            name={exercise.name}
+            bodyPart={exercise.bodyPart}
+            equipment={exercise.equipment}
+            target={exercise.target}
+            secondaryMuscles={exercise.secondaryMuscles}
+            instructions={exercise.instructions}
+            gifUrl={exercise.gifUrl}
+          />
+        ))}
       </div>
+
+      <PulseLoader
+        color="#2563EB"
+        className=" mt-24"
+        loading={loading}
+        size={15}
+      />
+    </div>
   );
 };
 
