@@ -16,6 +16,7 @@ const ExerciseCard = ({
   name,
   target,
   secondaryMuscles,
+  instructions,
 }) => {
   return (
     <Card className=" m-10 max-w-96">

@@ -79,6 +79,7 @@ const ExercisesPage = () => {
             equipment={exercise.equipment}
             target={exercise.target}
             secondaryMuscles={exercise.secondaryMuscles}
+            instructions={exercise.instructions}
             gifUrl={exercise.gifUrl}
           />
         ))}
