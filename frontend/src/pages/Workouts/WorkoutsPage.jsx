@@ -2,8 +2,9 @@ import useTitle from "../../hooks/useTitle";
 import { Typography } from "@material-tailwind/react";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useState, useEffect } from "react";
-import { getUserWorkouts } from "../../services/workout";
+import { getUserWorkouts, deleteWorkoutById } from "../../services/workout";
 import WorkoutCard from "../../components/WorkoutsPage/WorkoutCard";
+import { toast } from "react-toastify";
 
 const WorkoutsPage = () => {
   useTitle("Workouts | " + import.meta.env.VITE_APP_NAME);
@@ -28,6 +29,21 @@ const WorkoutsPage = () => {
     fetchWorkouts();
   }, []);
 
+  const handleDeleteWorkout = (workoutId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    deleteWorkoutById(workoutId, user._id)
+      .then(() => {
+        setWorkouts(workouts.filter((workout) => workout._id !== workoutId));
+        toast.success("Workout Deleted Successfully");
+
+      })
+      .catch((error) => {
+        toast.error("Error Deleting Workout");
+        console.error(error);
+      });
+  }
+
   return (
     <div className="flex flex-col items-center m-8 relative">
       <Typography variant="h2" color="blue-gray" className="mb-10 text-center">
@@ -39,10 +55,12 @@ const WorkoutsPage = () => {
           workouts.map((workout) => (
             <WorkoutCard
               key={workout._id}
+              id={workout._id}
               name={workout.name}
               description={workout.description}
               exercises={workout.exercises}
               coverPhoto={workout.coverPhoto}
+              deleteWorkout={handleDeleteWorkout}
             />
           ))
         ) : (

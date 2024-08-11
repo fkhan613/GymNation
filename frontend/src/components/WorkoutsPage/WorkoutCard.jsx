@@ -9,7 +9,9 @@ import {
 
 import { useState } from "react";
 
-const WorkoutCard = ({ name, description, exercises, coverPhoto }) => {
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+
+const WorkoutCard = ({ id, name, description, exercises, coverPhoto, deleteWorkout }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showFullExercises, setShowFullExercises] = useState(false);
 
@@ -63,7 +65,7 @@ const WorkoutCard = ({ name, description, exercises, coverPhoto }) => {
           <ul className="list-disc pl-5">
             {reducedExercises.map((exercise) => (
               <li key={exercise._id}>
-                {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)}
+                {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)} 
               </li>
             ))}
           </ul>
@@ -77,13 +79,15 @@ const WorkoutCard = ({ name, description, exercises, coverPhoto }) => {
           </button>
         )}
       </CardBody>
-      <CardFooter className="pt-0">
-        <div className="flex gap-4">
-          <Button className=" bg-indigo-500 hover:bg-indigo-600">
-            Edit Workout
+      <CardFooter className="pt-0 self-center">
+        <div className="flex gap-x-4">
+          <Button className=" bg-indigo-500 hover:bg-indigo-600 flex gap-3">
+            <PencilSquareIcon className="h-4 w-4" />
+            Edit
           </Button>
-          <Button className=" bg-deep-orange-800 hover:bg-deep-orange-900">
-            Delete Workout
+          <Button className=" bg-deep-orange-800 hover:bg-deep-orange-900  flex gap-3" onClick={() => deleteWorkout(id)}>
+            <TrashIcon className="h-4 w-4" />
+            Delete
           </Button>
         </div>
       </CardFooter>

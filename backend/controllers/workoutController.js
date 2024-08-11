@@ -62,8 +62,6 @@ const createNewWorkout = async (req, res) => {
   const { userId, name, description, exercises, visibility, coverPhoto } =
     req.body;
 
-  console.log("Received workout data:", req.body);
-
   // Validate data
   if (!userId || !name || !exercises) {
     return res
@@ -102,7 +100,6 @@ const createNewWorkout = async (req, res) => {
         instructions: exercise.instructions,
       })),
       visibility,
-      coverPhoto,
     });
 
     await newWorkout.save();
@@ -173,7 +170,7 @@ const deleteWorkoutById = async (req, res) => {
   }
 
   //check if the workout belongs to the user
-  if (workout.userId !== userId) {
+  if (workout.userId.toString() !== userId) {
     return res.status(403).json({ message: "Unauthorized" });
   }
 

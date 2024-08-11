@@ -8,7 +8,6 @@ export const getUserWorkouts = async (userId) => {
     const response = await axios.get(`${API_URL}/workouts`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-
       },
       params: {
         userId,
@@ -40,19 +39,27 @@ export const getWorkoutById = async (id, userId) => {
   }
 };
 
-export const createWorkout = async (userId, name, description, exercises, visibility, coverPhoto) => {
+export const createWorkout = async (
+  userId,
+  name,
+  description,
+  exercises,
+  visibility,
+  coverPhoto
+) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
     const response = await axios.post(
       `${API_URL}/workouts`,
-      { // Correctly place userId, name, description, and exercises in the request body
+      {
+        // Correctly place userId, name, description, and exercises in the request body
         userId,
         name,
         description,
         exercises,
         visibility,
-        coverPhoto
+        coverPhoto,
       },
       {
         headers: {
@@ -72,12 +79,14 @@ export const updateWorkoutById = async (
   userId,
   name,
   description,
-  exercises
+  exercises,
+  visibility,
+  coverPhoto
 ) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
-    const response = await axios.patch(`${API_URL}/workouts/`, {
+    const response = await axios.patch(`${API_URL}/workouts`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -86,6 +95,8 @@ export const updateWorkoutById = async (
       name,
       description,
       exercises,
+      visibility,
+      coverPhoto,
     });
     return response.data;
   } catch (error) {
@@ -102,8 +113,10 @@ export const deleteWorkoutById = async (id, userId) => {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-      id,
-      userId,
+      data: {
+        id,
+        userId,
+      },
     });
     return response.data;
   } catch (error) {
