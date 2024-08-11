@@ -35,7 +35,7 @@ const WorkoutsPage = () => {
         Your Workouts
       </Typography>
 
-      <div className="flex flex-row flex-wrap justify-center mt-6">
+      <div className="flex flex-row flex-wrap justify-center mt-6 gap-8">
         {workouts.length > 0 ? (
           workouts.map((workout) => (
             <WorkoutCard
