@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { Typography } from "@material-tailwind/react";
 import SearchBar from "../WorkoutsPage/SearchBar";
 import ExerciseCard from "../WorkoutsPage/ExerciseCard";
 import PulseLoader from "react-spinners/PulseLoader";
@@ -124,10 +123,6 @@ const CreateWorkoutForm = () => {
   };
 
   return (
-    <>
-      <Typography variant="h2" color="blue-gray" className="mb-12">
-        Create a Workout
-      </Typography>
       <form className=" shadow-md p-8 justify-center size-min: max-w-full">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
@@ -368,7 +363,6 @@ const CreateWorkoutForm = () => {
           </button>
         </div>
       </form>
-    </>
   );
 };
 

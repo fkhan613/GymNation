@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 import { getUserWorkouts, deleteWorkoutById } from "../../services/workout";
 import WorkoutCard from "../../components/WorkoutsPage/WorkoutCard";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const WorkoutsPage = () => {
   useTitle("Workouts | " + import.meta.env.VITE_APP_NAME);
 
   const [loading, setLoading] = useState(true);
   const [workouts, setWorkouts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -44,6 +46,22 @@ const WorkoutsPage = () => {
       });
   }
 
+  const handleEditWorkout = (
+    workoutId,
+    name,
+    description,
+    exercises,
+    coverPhoto,
+    visibility
+  ) => {
+    localStorage.setItem("tempExercises", JSON.stringify({ exercises }));
+
+    // Redirect to the Edit Workout Page
+    navigate(
+      `/dashboard/workouts/edit/${workoutId}?name=${name}&description=${description}&coverPhoto=${coverPhoto}&visibility=${visibility}`
+    );
+  };
+
   return (
     <div className="flex flex-col items-center m-8 relative">
       <Typography variant="h2" color="blue-gray" className="mb-10 text-center">
@@ -60,7 +78,9 @@ const WorkoutsPage = () => {
               description={workout.description}
               exercises={workout.exercises}
               coverPhoto={workout.coverPhoto}
+              visibility={workout.visibility}
               deleteWorkout={handleDeleteWorkout}
+              editWorkout={handleEditWorkout}
             />
           ))
         ) : (

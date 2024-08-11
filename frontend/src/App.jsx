@@ -24,7 +24,7 @@ function App() {
           <Route path="workouts">
             <Route index element={<WorkoutsPage />} />
             <Route path="create-workout" element={<CreateWorkoutPage />} />
-            <Route path="edit-workout/:id" element={<EditWorkoutPage />} />
+            <Route path="edit/:id" element={<EditWorkoutPage />} />
           </Route>
           <Route path="exercises">
             <Route index element={<ExercisesPage />} />

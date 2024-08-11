@@ -11,7 +11,16 @@ import { useState } from "react";
 
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 
-const WorkoutCard = ({ id, name, description, exercises, coverPhoto, deleteWorkout }) => {
+const WorkoutCard = ({
+  id,
+  name,
+  description,
+  exercises,
+  coverPhoto,
+  visbility,
+  deleteWorkout,
+  editWorkout,
+}) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showFullExercises, setShowFullExercises] = useState(false);
 
@@ -21,7 +30,7 @@ const WorkoutCard = ({ id, name, description, exercises, coverPhoto, deleteWorko
 
   const toggleExercises = () => {
     setShowFullExercises(!showFullExercises);
-  }
+  };
 
   const reducedDescription =
     description.length > 100 ? `${description.slice(0, 100)}...` : description;
@@ -65,7 +74,7 @@ const WorkoutCard = ({ id, name, description, exercises, coverPhoto, deleteWorko
           <ul className="list-disc pl-5">
             {reducedExercises.map((exercise) => (
               <li key={exercise._id}>
-                {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)} 
+                {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)}
               </li>
             ))}
           </ul>
@@ -81,11 +90,26 @@ const WorkoutCard = ({ id, name, description, exercises, coverPhoto, deleteWorko
       </CardBody>
       <CardFooter className="pt-0 self-center">
         <div className="flex gap-x-4">
-          <Button className=" bg-indigo-500 hover:bg-indigo-600 flex gap-3">
+          <Button
+            className=" bg-indigo-500 hover:bg-indigo-600 flex gap-3"
+            onClick={() =>
+              editWorkout(
+                id,
+                name,
+                description,
+                exercises,
+                coverPhoto,
+                visbility
+              )
+            }
+          >
             <PencilSquareIcon className="h-4 w-4" />
             Edit
           </Button>
-          <Button className=" bg-deep-orange-800 hover:bg-deep-orange-900  flex gap-3" onClick={() => deleteWorkout(id)}>
+          <Button
+            className=" bg-deep-orange-800 hover:bg-deep-orange-900  flex gap-3"
+            onClick={() => deleteWorkout(id)}
+          >
             <TrashIcon className="h-4 w-4" />
             Delete
           </Button>

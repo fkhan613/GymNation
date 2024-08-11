@@ -8,6 +8,8 @@ import {
   Button,
 } from "@material-tailwind/react";
 
+import logo from "../../assets/gymnation-logo.png";
+
 const ExerciseCard = ({
   bodyPart,
   equipment,
@@ -29,7 +31,7 @@ const ExerciseCard = ({
       name,
       bodyPart,
       equipment,
-      gifUrl,
+      gifUrl, 
       target,
       secondaryMuscles,
       instructions,
@@ -46,7 +48,15 @@ const ExerciseCard = ({
 
   return (
     <Card className=" m-10 max-w-80 max-h-26">
-      <img className="w-auto" src={gifUrl} alt={name} />
+      <img
+        className="w-auto h-40 mx-auto"
+        src={gifUrl || logo}
+        alt={name}
+        onError={(e) => {
+          e.target.onerror = null; 
+          e.target.src = logo;
+        }}
+      />
 
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">

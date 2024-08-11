@@ -86,21 +86,26 @@ export const updateWorkoutById = async (
   const accessToken = localStorage.getItem("accessToken");
 
   try {
-    const response = await axios.patch(`${API_URL}/workouts`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+    const response = await axios.patch(
+      `${API_URL}/workouts`,
+      {
+        id,
+        userId,
+        name,
+        description,
+        exercises,
+        visibility,
+        coverPhoto,
       },
-      id,
-      userId,
-      name,
-      description,
-      exercises,
-      visibility,
-      coverPhoto,
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error updating workout:", error.response || error.message);
     return {};
   }
 };

@@ -118,7 +118,7 @@ const createNewWorkout = async (req, res) => {
 // @access private
 
 const updateWorkoutById = async (req, res) => {
-  const { id, userId, name, description, exercises } = req.body;
+  const { id, userId, name, description, exercises, visibility, coverPhoto } = req.body;
 
   // Validate data
   if (!id || !userId) {
@@ -132,8 +132,9 @@ const updateWorkoutById = async (req, res) => {
     return res.status(404).json({ message: "Workout not found" });
   }
 
+  console.log(workout.userId, userId);
   //check if the workout belongs to the user
-  if (workout.userId !== userId) {
+  if (workout.userId != userId) {
     return res.status(403).json({ message: "Unauthorized" });
   }
 
@@ -145,7 +146,7 @@ const updateWorkoutById = async (req, res) => {
   }
 
   // Update workout
-  await Workout.findByIdAndUpdate(id, { name, description, exercises });
+  await Workout.findByIdAndUpdate(id, { name, description, exercises, visibility, coverPhoto });
 
   res.json({ message: "Workout updated" });
 };
