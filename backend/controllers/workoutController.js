@@ -1,6 +1,6 @@
 const Workout = require("../models/UserWorkout");
 const User = require("../models/User");
-const cloudinary = require("../config/cloudinaryConfig");
+
 
 // @desc Get all workouts the user has created. Ex. Push days, Pull days, Leg days
 // @route GET /workouts
@@ -59,7 +59,7 @@ const getWorkoutById = async (req, res) => {
 // @access private
 
 const createNewWorkout = async (req, res) => {
-  const { userId, name, description, exercises, visibility } =
+  const { userId, name, description, exercises, visibility, coverPhoto } =
     req.body;
 
   console.log("Received workout data:", req.body);
@@ -102,6 +102,7 @@ const createNewWorkout = async (req, res) => {
         instructions: exercise.instructions,
       })),
       visibility,
+      coverPhoto,
     });
 
     await newWorkout.save();

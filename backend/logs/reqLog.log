@@ -921,3 +921,13 @@
 20240811	13:39:01	37f8387f-4b3a-43d8-8a1b-4bff2155ccfc	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240811	13:41:36	8eb323a4-a99c-447f-b75f-1561ca14c6a5	OPTIONS	/auth/login	http://localhost:5173
 20240811	13:41:36	9e426d4e-936f-43e3-987c-52942280bcec	POST	/auth/login	http://localhost:5173
+20240811	13:52:07	3862d683-7418-496c-ab91-222ee11dcd4e	OPTIONS	/workouts	http://localhost:5173
+20240811	13:52:07	2df4f0ae-1e82-4ce5-b79b-dbd6be4e3962	POST	/workouts	http://localhost:5173
+20240811	13:52:07	6441c956-e3ec-48df-a199-b5ca2feaf5ed	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:52:08	d6deb514-7d22-41c3-b3f2-2c315f4dc770	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:53:05	2737c675-2891-4a3f-a1f0-3035655c2833	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:53:05	8aafbbe8-f170-409f-bf1c-a24b15f8e2a3	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:57:10	da2ddbfd-e7f4-4b95-b7e6-c734ccb3e79f	OPTIONS	/workouts	http://localhost:5173
+20240811	13:57:10	d80521d1-9a79-450c-afac-06117942d841	POST	/workouts	http://localhost:5173
+20240811	13:57:11	eb0307c6-5e7c-4137-95bc-414a6b2233e3	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:57:11	c5042418-f66d-4531-a2f6-7ea429b711d6	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
