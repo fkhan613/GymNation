@@ -2,7 +2,7 @@ import useTitle from "../../hooks/useTitle";
 import { Typography } from "@material-tailwind/react";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useState, useEffect } from "react";
-import { getUserWorkouts} from "../../services/workout";
+import { getUserWorkouts } from "../../services/workout";
 import WorkoutCard from "../../components/WorkoutsPage/WorkoutCard";
 
 const WorkoutsPage = () => {
@@ -10,11 +10,11 @@ const WorkoutsPage = () => {
 
   const [loading, setLoading] = useState(true);
   const [workouts, setWorkouts] = useState([]);
-  
+
   useEffect(() => {
     const fetchWorkouts = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
-      
+
       try {
         const data = await getUserWorkouts(user._id);
         setWorkouts(data);
@@ -28,10 +28,9 @@ const WorkoutsPage = () => {
     fetchWorkouts();
   }, []);
 
-
   return (
     <div className="flex flex-col items-center m-8 relative">
-      <Typography variant="h2" color="blue-gray" className="mb-10">
+      <Typography variant="h2" color="blue-gray" className="mb-10 text-center">
         Your Workouts
       </Typography>
 
