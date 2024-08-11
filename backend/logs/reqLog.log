@@ -914,3 +914,10 @@
 20240810	23:44:35	5c251fbc-43dd-46c6-adb1-5723e2397fa1	POST	/workouts	http://localhost:5173
 20240810	23:44:35	d2575380-4ceb-4d41-89a0-34f003e6a3de	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240810	23:44:35	bc61a5f4-f63d-47c5-bea5-33294fbefa2e	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:38:58	865064c8-da7e-4d78-9548-ac9dfb1421c1	GET	/	undefined
+20240811	13:38:58	e2aa4529-900f-4c9d-a95c-59c95f825a92	GET	/images/gymnation-logo.png	undefined
+20240811	13:38:58	80ceae21-0c56-450f-8f92-ea456a43128d	GET	/images/favicon.ico	undefined
+20240811	13:39:01	ed21f7c0-c8cc-4363-b893-6fe68bf5ec94	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:39:01	37f8387f-4b3a-43d8-8a1b-4bff2155ccfc	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240811	13:41:36	8eb323a4-a99c-447f-b75f-1561ca14c6a5	OPTIONS	/auth/login	http://localhost:5173
+20240811	13:41:36	9e426d4e-936f-43e3-987c-52942280bcec	POST	/auth/login	http://localhost:5173

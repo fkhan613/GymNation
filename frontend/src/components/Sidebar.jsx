@@ -22,7 +22,7 @@ import {
   InboxIcon,
   PowerIcon,
   BoltIcon,
-  GlobeAltIcon,
+  GlobeAmericasIcon
 } from "@heroicons/react/24/solid";
 import {
   CubeTransparentIcon,
@@ -170,9 +170,9 @@ const Sidebar = () => {
                   </ListItem>
                   <ListItem>
                     <ListItemPrefix>
-                      <GlobeAltIcon strokeWidth={3} className="h-3 w-5" />
+                      <GlobeAmericasIcon strokeWidth={3} className="h-4 w-5" />
                     </ListItemPrefix>
-                    View the Worlds Workouts
+                    Global Workouts
                   </ListItem>
                 </List>
               </AccordionBody>
