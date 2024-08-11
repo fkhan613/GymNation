@@ -1,6 +1,6 @@
 const Workout = require("../models/UserWorkout");
 const User = require("../models/User");
-const cloudinary = require("../config/cloudinaryConfig")
+const cloudinary = require("../config/cloudinaryConfig");
 
 // @desc Get all workouts the user has created. Ex. Push days, Pull days, Leg days
 // @route GET /workouts
@@ -59,7 +59,10 @@ const getWorkoutById = async (req, res) => {
 // @access private
 
 const createNewWorkout = async (req, res) => {
-  const { userId, name, description, exercises, coverPhoto, visibility } = req.body;
+  const { userId, name, description, exercises, visibility } =
+    req.body;
+
+  console.log("Received workout data:", req.body);
 
   // Validate data
   if (!userId || !name || !exercises) {
@@ -79,33 +82,37 @@ const createNewWorkout = async (req, res) => {
   if (exercises && !Array.isArray(exercises)) {
     return res
       .status(400)
-      .json({ message: "Exercises must be an array of strings" });
+      .json({ message: "Exercises must be an array of objects" });
   }
-
-  //convert the cover photo file into a url using cloudinary
-  let coverPhotoUrl = null;
-  if (coverPhoto) {
-    const uploadedResponse = await cloudinary.uploader.upload(coverPhoto, {
-      upload_preset: `${userId}_workout_cover_photos`,
-    });
-    coverPhotoUrl = uploadedResponse.url;
-  }
-
-
 
   // Create new workout
-  const newWorkout = new Workout({
-    userId,
-    name,
-    description,
-    exercises,
-    coverPhoto: coverPhotoUrl,
-    visibility,
-  });
+  try {
+    const newWorkout = new Workout({
+      userId,
+      name,
+      description,
+      exercises: exercises.map((exercise) => ({
+        id: exercise.id,
+        name: exercise.name,
+        bodyPart: exercise.bodyPart,
+        equipment: exercise.equipment,
+        gifUrl: exercise.gifUrl,
+        target: exercise.target,
+        secondaryMuscles: exercise.secondaryMuscles,
+        instructions: exercise.instructions,
+      })),
+      visibility,
+    });
 
-  await newWorkout.save();
-
-  res.json(newWorkout);
+    await newWorkout.save();
+    console.log("Workout created successfully:", newWorkout);
+    res
+      .status(201)
+      .json({ message: "Workout created successfully", workout: newWorkout });
+  } catch (error) {
+    console.error("Error creating workout:", error);
+    res.status(500).json({ message: "Error creating workout", error });
+  }
 };
 
 // @desc Update workout by ID

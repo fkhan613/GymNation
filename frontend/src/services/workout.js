@@ -40,7 +40,7 @@ export const getWorkoutById = async (id, userId) => {
   }
 };
 
-export const createWorkout = async (userId, name, description, exercises) => {
+export const createWorkout = async (userId, name, description, exercises, visibility, coverPhoto) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
@@ -51,6 +51,8 @@ export const createWorkout = async (userId, name, description, exercises) => {
         name,
         description,
         exercises,
+        visibility,
+        coverPhoto
       },
       {
         headers: {

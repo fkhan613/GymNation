@@ -7,7 +7,7 @@ import {
   equipment,
 } from "../../config/exerciseSearchCats";
 
-const SearchBar = ({ handleSearch }) => {
+const SearchBar = ({ handleSearch, setExercises }) => {
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("name");
   const [selectCategory, setSelectCategory] = useState("");
@@ -85,6 +85,18 @@ const SearchBar = ({ handleSearch }) => {
         }}
       >
         Search
+      </Button>
+      <Button
+        size="sm"
+        color="red"
+        className="w-full sm:w-auto sm:mt-0"
+        onClick={() => {
+          setSearch("");
+          setSelectCategory("");
+          setExercises([]);
+        }}
+      >
+        Clear Search
       </Button>
     </div>
   );

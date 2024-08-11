@@ -2,6 +2,43 @@
 
 const mongoose = require("mongoose");
 
+const exerciseSchema = new mongoose.Schema({
+  id: {
+    type: String,
+  },
+  bodyPart: {
+    type: String,
+  },
+  equipment: {
+    type: String,
+  },
+  gifUrl: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
+  target: {
+    type: String,
+  },
+  secondaryMuscles: {
+    type: [String],
+  },
+  instructions: {
+    type: [String],
+  },
+  sets: [
+    {
+      weight: {
+        type: String,
+      },
+      reps: {
+        type: String,
+      },
+    },
+  ],
+});
+
 const workoutSchema = new mongoose.Schema(
   {
     userId: {
@@ -16,66 +53,17 @@ const workoutSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    exercises: [exerciseSchema],
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
+    },
     coverPhoto: {
       type: String,
       default:
         "https://res.cloudinary.com/dr2xuaa6e/image/upload/v1723169756/default-workout-img.png",
     },
-    visibility: {
-      type: String,
-      default: "private",
-    },
-    exercises: [
-      {
-        exercise: {
-          bodyPart: {
-            type: String,
-            required: true,
-          },
-          equipment: {
-            type: String,
-            required: true,
-          },
-          gifUrl: {
-            type: String,
-            required: true,
-          },
-          name: {
-            type: String,
-            required: true,
-          },
-          target: {
-            type: String,
-            required: true,
-          },
-          secondaryMuscles: {
-            type: [String],
-            required: true,
-          },
-          instructions: {
-            type: [String],
-            required: true,
-          },
-          id: {
-            type: String,
-            required: true,
-          },
-
-          sets: [
-            {
-              weight: {
-                type: Number,
-                required: true,
-              },
-              reps: {
-                type: Number,
-                required: true,
-              },
-            },
-          ],
-        },
-      },
-    ],
   },
   {
     timestamps: true,

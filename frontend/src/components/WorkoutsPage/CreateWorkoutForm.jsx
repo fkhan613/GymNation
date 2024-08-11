@@ -1,19 +1,101 @@
+/* eslint-disable react/prop-types */
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Typography } from "@material-tailwind/react";
 import SearchBar from "../WorkoutsPage/SearchBar";
+import ExerciseCard from "../WorkoutsPage/ExerciseCard";
+import PulseLoader from "react-spinners/PulseLoader";
+import { toast } from "react-toastify";
+import {
+  fetchExerciseByBodyPart,
+  fetchExerciseByEquipment,
+  fetchExerciseByName,
+  fetchExerciseByTargetMuscle,
+} from "..//../services/exercise";
+import { createWorkout } from "../../services/workout";
+import { useNavigate } from "react-router-dom";
 
 const CreateWorkoutForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [coverPhoto, setCoverPhoto] = useState("");
-  const [visibility, setVisibility] = useState("private");
+  const [coverPhoto, setCoverPhoto] = useState(null);
+  const [visibility, setVisibility] = useState("");
   const [exercises, setExercises] = useState([]);
   const [dragActive, setDragActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedExercises, setSelectedExercises] = useState([]);
+  const navigate = useNavigate();
 
-  const handleSearch = (e, searchTerm, select, selectCategory) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(searchTerm, select, selectCategory);
+
+    //validate form
+    if (!name) {
+      toast.error("Name is required");
+      return;
+    }
+
+    if (selectedExercises.length === 0) {
+      toast.error("Add at least one exercise to your workout");
+      return;
+    }
+
+    if (!visibility) {
+      toast.error("Visibility is required");
+      return;
+    }
+
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+
+    const result = await createWorkout(
+      userId,
+      name,
+      description,
+      selectedExercises,
+      visibility,
+      coverPhoto
+    );
+
+    console.log(result);
+
+
+    if (result) {
+      toast.success("Workout created successfully");
+      navigate("/dashboard/workouts");
+    } else {
+      toast.error("Error creating workout");
+    }
+  };
+
+  const handleSearch = async (e, searchTerm, select, selectCategory) => {
+    e.preventDefault();
+    setLoading(true);
+
+    let response;
+    if (select && (searchTerm || selectCategory)) {
+      switch (select) {
+        case "name":
+          response = await fetchExerciseByName(searchTerm);
+          break;
+        case "body-part":
+          response = await fetchExerciseByBodyPart(selectCategory);
+          console.log(response);
+          break;
+        case "machine":
+          response = await fetchExerciseByEquipment(selectCategory);
+          console.log(response);
+          break;
+        case "target-muscle":
+          response = await fetchExerciseByTargetMuscle(selectCategory);
+          console.log(response);
+          break;
+        default:
+          response = [];
+      }
+    }
+
+    setExercises(response);
+    setLoading(false);
   };
 
   const handleDrag = (e) => {
@@ -40,12 +122,13 @@ const CreateWorkoutForm = () => {
       setCoverPhoto(e.target.files[0]);
     }
   };
+
   return (
     <>
       <Typography variant="h2" color="blue-gray" className="mb-12">
         Create a Workout
       </Typography>
-      <form className=" shadow-md p-8">
+      <form className=" shadow-md p-8 justify-center size-min: max-w-full">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -69,6 +152,7 @@ const CreateWorkoutForm = () => {
                       id="name"
                       name="name"
                       type="text"
+                      required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Push Day"
@@ -133,7 +217,6 @@ const CreateWorkoutForm = () => {
                         <input
                           id="coverPhoto"
                           name="coverPhoto"
-                          value={coverPhoto}
                           type="file"
                           className="sr-only"
                           onChange={handleChange}
@@ -172,7 +255,7 @@ const CreateWorkoutForm = () => {
                         id="public"
                         name="visibility"
                         value="public"
-                        onSelect={(e) => setVisibility(e.target.value)}
+                        onChange={() => setVisibility("public")}
                         type="radio"
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
@@ -196,7 +279,7 @@ const CreateWorkoutForm = () => {
                         name="visibility"
                         value="private"
                         type="radio"
-                        onSelect={(e) => setVisibility(e.target.value)}
+                        onChange={() => setVisibility("private")}
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                     </div>
@@ -224,11 +307,52 @@ const CreateWorkoutForm = () => {
             <p className="mt-1 text-sm leading-6 text-gray-600 mb-6">
               Add exercises to your workout.
             </p>
-            <SearchBar handleSearch={handleSearch} />
+            <SearchBar
+              handleSearch={handleSearch}
+              exercises={exercises}
+              setExercises={setExercises}
+            />
+            <div className="flex flex-row flex-wrap justify-center mt-16 size-min:max-w-full">
+              <PulseLoader color="#2563EB" loading={loading} />
+              {exercises.map((exercise) => (
+                <ExerciseCard
+                  key={exercise.id}
+                  id={exercise.id}
+                  name={exercise.name}
+                  bodyPart={exercise.bodyPart}
+                  equipment={exercise.equipment}
+                  target={exercise.target}
+                  secondaryMuscles={exercise.secondaryMuscles}
+                  instructions={exercise.instructions}
+                  gifUrl={exercise.gifUrl}
+                  selectedExercises={selectedExercises}
+                  setSelectedExercises={setSelectedExercises}
+                />
+              ))}
+
+              {exercises.length === 0 &&
+                selectedExercises.length != 0 &&
+                !loading &&
+                selectedExercises.map((exercise) => (
+                  <ExerciseCard
+                    key={exercise.id}
+                    id={exercise.id}
+                    name={exercise.name}
+                    bodyPart={exercise.bodyPart}
+                    equipment={exercise.equipment}
+                    target={exercise.target}
+                    secondaryMuscles={exercise.secondaryMuscles}
+                    instructions={exercise.instructions}
+                    gifUrl={exercise.gifUrl}
+                    selectedExercises={selectedExercises}
+                    setSelectedExercises={setSelectedExercises}
+                  />
+                ))}
+            </div>
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-end gap-x-6">
+        <div className="mt-8 flex items-center justify-end gap-x-6">
           <button
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -238,6 +362,7 @@ const CreateWorkoutForm = () => {
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={handleSubmit}
           >
             Save
           </button>
