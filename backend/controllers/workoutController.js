@@ -126,7 +126,8 @@ const createNewWorkout = async (req, res) => {
 // @access private
 
 const updateWorkoutById = async (req, res) => {
-  const { id, userId, name, description, exercises, visibility, coverPhoto } = req.body;
+  const { id, userId, name, description, exercises, visibility, coverPhoto } =
+    req.body;
 
   // Validate data
   if (!id || !userId) {
@@ -150,11 +151,32 @@ const updateWorkoutById = async (req, res) => {
   if (exercises && !Array.isArray(exercises)) {
     return res
       .status(400)
-      .json({ message: "Exercises must be an array of strings" });
+      .json({ message: "Exercises must be an array of objects" });
+  }
+
+  // Validate coverPhoto URL
+  if (coverPhoto && typeof coverPhoto !== "string") {
+    return res.status(400).json({ message: "Cover photo must be a valid URL" });
   }
 
   // Update workout
-  await Workout.findByIdAndUpdate(id, { name, description, exercises, visibility, coverPhoto });
+  await Workout.findByIdAndUpdate({
+    userId,
+    name,
+    description,
+    exercises: exercises.map((exercise) => ({
+      id: exercise.id,
+      name: exercise.name,
+      bodyPart: exercise.bodyPart,
+      equipment: exercise.equipment,
+      gifUrl: exercise.gifUrl,
+      target: exercise.target,
+      secondaryMuscles: exercise.secondaryMuscles,
+      instructions: exercise.instructions,
+    })),
+    visibility,
+    coverPhoto,
+  });
 
   res.json({ message: "Workout updated" });
 };
