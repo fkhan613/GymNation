@@ -181,6 +181,54 @@ const updateWorkoutById = async (req, res) => {
   res.json({ message: "Workout updated" });
 };
 
+const updateWorkoutExercises = async (req, res) => {
+  const { id, userId, exercises } = req.body;
+
+  console.log("Exercises:", exercises);
+
+  // Validate data
+  if (!id || !userId || !exercises) {
+    return res
+      .status(400)
+      .json({ message: "Workout ID, User ID, and Exercises Required" });
+  }
+
+  const workout = await Workout.findById(id).lean().exec();
+
+  //check if workout exists
+  if (!workout) {
+    return res.status(404).json({ message: "Workout not found" });
+  }
+
+  //check if the workout belongs to the user
+  if (workout.userId != userId) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
+
+  //check if the exercises is an array of strings containing the exercise ids from the ExerciseDB API
+  if (exercises && !Array.isArray(exercises)) {
+    return res
+      .status(400)
+      .json({ message: "Exercises must be an array of objects" });
+  }
+
+  // Update workout
+  await Workout.findByIdAndUpdate(id, {
+    exercises: exercises.map((exercise) => ({
+      id: exercise.id,
+      name: exercise.name,
+      bodyPart: exercise.bodyPart,
+      equipment: exercise.equipment,
+      gifUrl: exercise.gifUrl,
+      target: exercise.target,
+      secondaryMuscles: exercise.secondaryMuscles,
+      instructions: exercise.instructions,
+    })),
+  });
+
+  res.json({ message: "Workout updated" });
+}
+
 // @desc Delete workout by ID
 // @route DELETE /workouts
 // @access private
@@ -216,5 +264,6 @@ module.exports = {
   getWorkoutById,
   createNewWorkout,
   updateWorkoutById,
+  updateWorkoutExercises,
   deleteWorkoutById,
 };

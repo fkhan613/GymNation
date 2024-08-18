@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 
 import InstructionsModal from "./InstructionsModal";
+import AddExerciseToWorkoutModal from "./AddExerciseToWorkoutModal";
 import { useState } from "react";
 
 const ExerciseCard = ({
@@ -22,6 +23,7 @@ const ExerciseCard = ({
   instructions,
 }) => {
   const [open, setOpen] = useState(false);
+  const [openAddWorkoutModal, setOpenAddWorkoutModal] = useState(false);
 
   return (
     <>
@@ -46,7 +48,10 @@ const ExerciseCard = ({
             >
               View Instructions
             </Button>
-            <Button className=" bg-indigo-500 hover:bg-indigo-600">
+            <Button
+              className=" bg-indigo-500 hover:bg-indigo-600"
+              onClick={() => setOpenAddWorkoutModal(true)}
+            >
               Add to a Workout
             </Button>
           </div>
@@ -60,6 +65,23 @@ const ExerciseCard = ({
           instructions={instructions}
           open={open}
           setOpen={setOpen}
+        />
+      )}
+
+      {openAddWorkoutModal && (
+        <AddExerciseToWorkoutModal
+          exercise={{
+            bodyPart,
+            equipment,
+            gifUrl,
+            id,
+            name,
+            target,
+            secondaryMuscles,
+            instructions,
+          }}
+          openAddWorkoutModal={openAddWorkoutModal}
+          setOpenAddWorkoutModal={setOpenAddWorkoutModal}
         />
       )}
     </>

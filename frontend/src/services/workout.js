@@ -112,6 +112,31 @@ export const updateWorkoutById = async (
   }
 };
 
+export const updateWorkoutExercisesById = async (id, exercises) => {
+  const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
+
+  try {
+    const response = await axios.patch(
+      `${API_URL}/workouts/update-workout-exercises`,
+      {
+        id,
+        userId,
+        exercises,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating workout exercises:", error.response || error.message);
+    return {};
+  }
+}
+
 export const deleteWorkoutById = async (id, userId) => {
   const accessToken = localStorage.getItem("accessToken");
 
