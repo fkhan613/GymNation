@@ -9,6 +9,8 @@ import {
 } from "@material-tailwind/react";
 
 import logo from "../../assets/gymnation-logo.png";
+import { useState } from "react";
+import InstructionsModal from "../ExercisesPage/InstructionsModal";
 
 const ExerciseCard = ({
   bodyPart,
@@ -22,6 +24,8 @@ const ExerciseCard = ({
   selectedExercises,
   setSelectedExercises,
 }) => {
+  const [open, setOpen] = useState(false);
+
   //check if the id is in the selected exercises
   const isSelected = selectedExercises?.some((element) => element.id === id);
 
@@ -31,7 +35,7 @@ const ExerciseCard = ({
       name,
       bodyPart,
       equipment,
-      gifUrl, 
+      gifUrl,
       target,
       secondaryMuscles,
       instructions,
@@ -47,51 +51,66 @@ const ExerciseCard = ({
   };
 
   return (
-    <Card className=" m-10 max-w-80 max-h-26">
-      <img
-        className="w-auto h-40 mx-auto"
-        src={gifUrl || logo}
-        alt={name}
-        onError={(e) => {
-          e.target.onerror = null; 
-          e.target.src = logo;
-        }}
-      />
+    <>
+      <Card className=" m-10 max-w-80 max-h-26">
+        <img
+          className="w-auto h-40 mx-auto"
+          src={gifUrl || logo}
+          alt={name}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = logo;
+          }}
+        />
 
-      <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-          {name.toUpperCase()}
-        </Typography>
-        <Typography>
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </Typography>
-      </CardBody>
-      <CardFooter className="pt-0">
-        <div className="flex gap-4 flex-wrap">
-          <Button className=" bg-gray-900 hover:bg-blue-gray-700">
-            Instructions
-          </Button>
+        <CardBody>
+          <Typography variant="h5" color="blue-gray" className="mb-2">
+            {name.toUpperCase()}
+          </Typography>
+          <Typography>
+            The place is close to Barceloneta Beach and bus stop just 2 min by
+            walk and near to &quot;Naviglio&quot; where you can enjoy the main
+            night life in Barcelona.
+          </Typography>
+        </CardBody>
+        <CardFooter className="pt-0">
+          <div className="flex gap-4 flex-wrap">
+            <Button
+              className=" bg-gray-900 hover:bg-blue-gray-700"
+              onClick={() => setOpen(true)}
+            >
+              View Instructions
+            </Button>
 
-          {isSelected ? (
-            <Button
-              className=" bg-deep-orange-800 hover:bg-deep-orange-900"
-              onClick={handleRemoveExercise}
-            >
-              Remove
-            </Button>
-          ) : (
-            <Button
-              className=" bg-indigo-500 hover:bg-indigo-600"
-              onClick={handleAddExercise}
-            >
-              Add
-            </Button>
-          )}
-        </div>
-      </CardFooter>
-    </Card>
+            {isSelected ? (
+              <Button
+                className=" bg-deep-orange-800 hover:bg-deep-orange-900"
+                onClick={handleRemoveExercise}
+              >
+                Remove
+              </Button>
+            ) : (
+              <Button
+                className=" bg-indigo-500 hover:bg-indigo-600"
+                onClick={handleAddExercise}
+              >
+                Add
+              </Button>
+            )}
+          </div>
+        </CardFooter>
+      </Card>
+
+      {open && (
+        <InstructionsModal
+          gifUrl={gifUrl}
+          name={name}
+          instructions={instructions}
+          open={open}
+          setOpen={setOpen}
+        />
+      )}
+    </>
   );
 };
 
