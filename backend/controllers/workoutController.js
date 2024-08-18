@@ -83,6 +83,13 @@ const createNewWorkout = async (req, res) => {
       .json({ message: "Exercises must be an array of objects" });
   }
 
+  // Validate coverPhoto URL
+  if (coverPhoto && typeof coverPhoto !== "string") {
+    return res.status(400).json({ message: "Cover photo must be a valid URL" });
+  }
+
+  console.log("Cover photo sent to server:", coverPhoto);
+
   // Create new workout
   try {
     const newWorkout = new Workout({
@@ -100,6 +107,7 @@ const createNewWorkout = async (req, res) => {
         instructions: exercise.instructions,
       })),
       visibility,
+      coverPhoto,
     });
 
     await newWorkout.save();
