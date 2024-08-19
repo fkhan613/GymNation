@@ -4240,3 +4240,5 @@
 20240818	15:28:41	89b8a71e-b8e3-41c6-9bec-943ad2b9704a	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240819	14:10:42	680cc528-e33a-4bf9-84a0-6449c783154e	OPTIONS	/auth/login	http://localhost:5173
 20240819	14:10:42	7618dc79-7068-44a2-a178-cfaa02ca9502	POST	/auth/login	http://localhost:5173
+20240819	14:34:58	edb5b7cf-c80f-4e36-a9a9-f35d355177c8	OPTIONS	/auth/login	http://localhost:5173
+20240819	14:34:58	073cb77c-1706-41c4-ab12-8f626ecfa2af	POST	/auth/login	http://localhost:5173
