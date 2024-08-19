@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
-import { PhotoIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
-import SearchBar from "../WorkoutsPage/SearchBar";
-import ExerciseCard from "../WorkoutsPage/ExerciseCard";
-import PulseLoader from "react-spinners/PulseLoader";
 import { toast } from "react-toastify";
 import {
   fetchExerciseByBodyPart,
