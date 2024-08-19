@@ -160,7 +160,7 @@ const updateWorkoutById = async (req, res) => {
   }
 
   // Update workout
-  await Workout.findByIdAndUpdate({
+  await Workout.findByIdAndUpdate(id, {
     userId,
     name,
     description,
