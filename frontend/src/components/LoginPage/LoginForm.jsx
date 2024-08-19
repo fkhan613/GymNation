@@ -92,7 +92,7 @@ const LoginForm = () => {
             </button>
           </div>
         </form>
-        <SocialLogin />
+        {/* <SocialLogin /> */}
       </div>
     </div>
   );

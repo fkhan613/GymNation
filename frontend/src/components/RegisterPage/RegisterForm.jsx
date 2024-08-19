@@ -119,7 +119,7 @@ const RegisterForm = () => {
             </button>
           </div>
         </form>
-        <SocialLogin />
+        {/* <SocialLogin /> */}
       </div>
     </div>
   );

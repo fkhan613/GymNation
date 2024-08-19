@@ -35,7 +35,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell, faBarsProgress } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../assets/gymnation-logo.png";
 import { useNavigate } from "react-router-dom";
@@ -118,6 +118,17 @@ const Sidebar = () => {
               <Typography color="blue-gray" className="mr-auto font-normal">
                 Dashboard
               </Typography>
+            </ListItem>
+            <ListItem
+              onClick={() => {
+                closeDrawer();
+                navigate("/dashboard/progress-logs");
+              }}
+            >
+              <ListItemPrefix>
+                <FontAwesomeIcon icon={faBarsProgress} className="h-5 w-5" />
+              </ListItemPrefix>
+              Progress Logs
             </ListItem>
 
             <Accordion

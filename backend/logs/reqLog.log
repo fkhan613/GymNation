@@ -4238,3 +4238,5 @@
 20240818	15:28:26	917a8b3d-b694-4168-a5db-3f0455f8c4d4	PATCH	/workouts/update-workout-exercises	http://localhost:5173
 20240818	15:28:41	2d11bdd6-99fa-4c00-9a34-f77674261a62	OPTIONS	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
 20240818	15:28:41	89b8a71e-b8e3-41c6-9bec-943ad2b9704a	GET	/workouts?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20240819	14:10:42	680cc528-e33a-4bf9-84a0-6449c783154e	OPTIONS	/auth/login	http://localhost:5173
+20240819	14:10:42	7618dc79-7068-44a2-a178-cfaa02ca9502	POST	/auth/login	http://localhost:5173
