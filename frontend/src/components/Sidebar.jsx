@@ -18,7 +18,6 @@ import {
 import {
   PresentationChartBarIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
   BoltIcon,
@@ -220,12 +219,6 @@ const Sidebar = () => {
                 <UserCircleIcon className="h-5 w-5" />
               </ListItemPrefix>
               Profile
-            </ListItem>
-            <ListItem>
-              <ListItemPrefix>
-                <Cog6ToothIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Settings
             </ListItem>
             <ListItem onClick={handleLogout}>
               <ListItemPrefix>
