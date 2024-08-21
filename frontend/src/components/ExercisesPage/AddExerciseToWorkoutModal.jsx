@@ -43,8 +43,8 @@ export default function AddExerciseToWorkoutModal({
   };
 
   const reducedInstructions =
-    exercise.instructions.length > 3
-      ? exercise.instructions.slice(0, 3)
+    exercise.instructions.length > 2
+      ? exercise.instructions.slice(0, 2)
       : exercise.instructions;
 
   return (
