@@ -6,6 +6,7 @@ import { getUserWorkouts, deleteWorkoutById } from "../../services/workout";
 import WorkoutCard from "../../components/WorkoutsPage/WorkoutCard";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 const WorkoutsPage = () => {
   useTitle("Workouts | " + import.meta.env.VITE_APP_NAME);
@@ -38,13 +39,12 @@ const WorkoutsPage = () => {
       .then(() => {
         setWorkouts(workouts.filter((workout) => workout._id !== workoutId));
         toast.success("Workout Deleted Successfully");
-
       })
       .catch((error) => {
         toast.error("Error Deleting Workout");
         console.error(error);
       });
-  }
+  };
 
   const handleEditWorkout = (
     workoutId,
@@ -63,10 +63,23 @@ const WorkoutsPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center m-8 relative">
-      <Typography variant="h2" color="blue-gray" className="mb-10 text-center">
-        Your Workouts
-      </Typography>
+    <div className="container mx-auto p-4">
+      <div className="flex justify-between items-center mb-20 shadow-md rounded p-6">
+        <Typography
+          variant="h2"
+          color="blue-gray"
+          className="text-3xl font-bold"
+        >
+          Your Workouts
+        </Typography>
+        <button
+          className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md transition flex items-center gap-2"
+          onClick={() => navigate("/dashboard/workouts/create-workout")}
+        >
+        <PlusCircleIcon className="w-5 h-5"/>
+          Create A Workout
+        </button>
+      </div>
 
       <div className="flex flex-row flex-wrap justify-center mt-6 gap-8">
         {workouts.length > 0 ? (
@@ -92,7 +105,7 @@ const WorkoutsPage = () => {
 
       <PulseLoader
         color="#2563EB"
-        className=" mt-16"
+        className="mt-16"
         loading={loading}
         size={15}
       />
