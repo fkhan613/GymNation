@@ -1,7 +1,6 @@
 const Workout = require("../models/UserWorkout");
 const User = require("../models/User");
 
-
 // @desc Get all workouts the user has created. Ex. Push days, Pull days, Leg days
 // @route GET /workouts
 // @access private
@@ -31,7 +30,9 @@ const getAllWorkouts = async (req, res) => {
 // @access private
 
 const getWorkoutById = async (req, res) => {
-  const { id, userId } = req.body;
+  const { userId } = req.query;
+  const { id } = req.params;
+
 
   // Validate data
   if (!id || !userId) {
@@ -46,12 +47,48 @@ const getWorkoutById = async (req, res) => {
   }
 
   //check if the workout belongs to the user
-  if (workout.userId !== userId) {
+  if (workout.userId.toString() !== userId) {
     return res.status(403).json({ message: "Unauthorized" });
   }
 
   //workout has been found, return the workout
   res.json(workout);
+};
+
+const getWorkoutExercises = async (req, res) => {
+  const { id, userId } = req.params;
+
+  // Validate data
+  if (!id || !userId) {
+    console.log("Validation failed - Workout ID:", id, "User ID:", userId);
+    return res.status(400).json({ message: "Workout ID and user ID required" });
+  }
+
+  console.log("Validation passed - Workout ID:", id, "User ID:", userId);
+
+  try {
+    const workout = await Workout.findById(id).lean().exec();
+
+    // Check if workout exists
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+
+    // Check if the workout belongs to the user
+    if (workout.userId.toString() !== userId) {
+      console.log("Workout User ID:", workout.userId, "Request User ID:", userId);
+      console.log("Unauthorized access - Workout ID:", id, "User ID:", userId);
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    console.log("Authorized access - Workout ID:", id, "User ID:", userId);
+
+    // Workout has been found, return the exercises
+    res.json(workout.exercises);
+  } catch (error) {
+    console.error("Error fetching workout:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 // @desc Create new workout
@@ -143,7 +180,7 @@ const updateWorkoutById = async (req, res) => {
 
   console.log(workout.userId, userId);
   //check if the workout belongs to the user
-  if (workout.userId != userId) {
+  if (workout.userId.toString() != userId) {
     return res.status(403).json({ message: "Unauthorized" });
   }
 
@@ -201,7 +238,7 @@ const updateWorkoutExercises = async (req, res) => {
   }
 
   //check if the workout belongs to the user
-  if (workout.userId != userId) {
+  if (workout.userId.toString() != userId) {
     return res.status(403).json({ message: "Unauthorized" });
   }
 
@@ -227,7 +264,7 @@ const updateWorkoutExercises = async (req, res) => {
   });
 
   res.json({ message: "Workout updated" });
-}
+};
 
 // @desc Delete workout by ID
 // @route DELETE /workouts
@@ -262,6 +299,7 @@ const deleteWorkoutById = async (req, res) => {
 module.exports = {
   getAllWorkouts,
   getWorkoutById,
+  getWorkoutExercises,
   createNewWorkout,
   updateWorkoutById,
   updateWorkoutExercises,

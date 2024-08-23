@@ -39,7 +39,7 @@ export const getProgressLogById = async (userId, id) => {
   }
 };
 
-export const createProgressLog = async (userId, workout, metrics) => {
+export const createProgressLog = async (userId, workoutId, metrics) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
@@ -47,7 +47,7 @@ export const createProgressLog = async (userId, workout, metrics) => {
       `${API_URL}/progress-logs`,
       {
         userId,
-        workout,
+        workoutId,
         metrics,
       },
       {
@@ -63,7 +63,7 @@ export const createProgressLog = async (userId, workout, metrics) => {
   }
 };
 
-export const updateProgressLog = async (userId, id, workout, metrics) => {
+export const updateProgressLog = async (userId, id, workoutId, metrics) => {
   const accessToken = localStorage.getItem("accessToken");
 
   try {
@@ -72,7 +72,7 @@ export const updateProgressLog = async (userId, id, workout, metrics) => {
       {
         id,
         userId,
-        workout,
+        workoutId,
         metrics,
       },
       {

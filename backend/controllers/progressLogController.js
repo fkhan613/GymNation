@@ -5,7 +5,9 @@ const User = require("../models/User");
 //@route GET /progress-logs
 //@access  Private
 const getProgressLogs = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.query;
+
+  console.log(userId);
 
   //validate data
   if (!userId) {

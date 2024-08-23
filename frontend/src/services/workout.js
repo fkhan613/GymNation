@@ -20,8 +20,9 @@ export const getUserWorkouts = async (userId) => {
   }
 };
 
-export const getWorkoutById = async (id, userId) => {
+export const getWorkoutById = async (id) => {
   const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   try {
     const response = await axios.get(`${API_URL}/workouts/${id}`, {
@@ -36,6 +37,28 @@ export const getWorkoutById = async (id, userId) => {
   } catch (error) {
     console.error("Error fetching workout by ID:", error);
     return {};
+  }
+};
+
+export const getExercisesByWorkout = async (id) => {
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
+  const accessToken = localStorage.getItem("accessToken");
+
+  console.log("Workout ID:", id, "User ID:", userId);
+
+  try {
+    const response = await axios.get(`${API_URL}/workouts/${id}/exercises/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching workout exercises:",
+      error.response || error.message
+    );
+    return [];
   }
 };
 
@@ -132,10 +155,13 @@ export const updateWorkoutExercisesById = async (id, exercises) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error updating workout exercises:", error.response || error.message);
+    console.error(
+      "Error updating workout exercises:",
+      error.response || error.message
+    );
     return {};
   }
-}
+};
 
 export const deleteWorkoutById = async (id, userId) => {
   const accessToken = localStorage.getItem("accessToken");

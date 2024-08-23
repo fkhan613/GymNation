@@ -1,16 +1,17 @@
 const progressLogController = require("../controllers/progressLogController");
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middleware/auth");
 
 router
   .route("/")
-  .get(progressLogController.getProgressLogs)
-  .post(progressLogController.createProgressLog)
-  .patch(progressLogController.updateProgressLog)
-  .delete(progressLogController.deleteProgressLog);
+  .get(protect, progressLogController.getProgressLogs)
+  .post(protect, progressLogController.createProgressLog)
+  .patch(protect, progressLogController.updateProgressLog)
+  .delete(protect, progressLogController.deleteProgressLog);
 
 router
   .route("/progress-logs/:id")
-  .get(progressLogController.getProgressLogById);
+  .get(protect, progressLogController.getProgressLogById);
 
 module.exports = router;

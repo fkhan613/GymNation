@@ -14,4 +14,6 @@ router.route("/update-workout-exercises").patch(protect, workoutController.updat
 
 router.route("/:id").get(protect, workoutController.getWorkoutById);
 
+router.route("/:id/exercises/:userId").get(protect, workoutController.getWorkoutExercises);
+
 module.exports = router;

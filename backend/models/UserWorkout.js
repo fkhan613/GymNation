@@ -27,16 +27,6 @@ const exerciseSchema = new mongoose.Schema({
   instructions: {
     type: [String],
   },
-  sets: [
-    {
-      weight: {
-        type: String,
-      },
-      reps: {
-        type: String,
-      },
-    },
-  ],
 });
 
 const workoutSchema = new mongoose.Schema(

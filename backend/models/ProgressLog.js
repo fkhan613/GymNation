@@ -13,7 +13,7 @@ const progressLogSchema = new mongoose.Schema({
     default: Date.now,
     required: true,
   },
-  workout: {
+  workoutId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Workout",
     required: true,
@@ -22,18 +22,15 @@ const progressLogSchema = new mongoose.Schema({
     {
       exerciseId: {
         type: String,
-        required: true,
       },
 
       sets: [
         {
           weight: {
             type: Number,
-            required: true,
           },
           reps: {
             type: Number,
-            required: true,
           },
         },
       ],

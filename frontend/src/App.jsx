@@ -12,6 +12,7 @@ import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
 import ExercisesPage from "./pages/Exercises/ExercisesPage";
 import ProgressLogsPage from "./pages/ProgressLogs/ProgressLogPage";
 import CreateProgressLogPage from "./pages/ProgressLogs/CreateProgressLogPage";
+import EditProgressLogPage from "./pages/ProgressLogs/EditProgressLogPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="progress-logs">
             <Route index element={<ProgressLogsPage />} />
             <Route path="create-log" element={<CreateProgressLogPage />} />
+            <Route path="edit/:id" element={<EditProgressLogPage />} />
           </Route>
 
           <Route path="profile/:id" element={<UserProfilePage />} />
