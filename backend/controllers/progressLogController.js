@@ -64,10 +64,10 @@ const getProgressLogById = async (req, res) => {
 //@access  Private
 
 const createProgressLog = async (req, res) => {
-  const { userId, workout, metrics } = req.body;
+  const { userId, workout, metrics, startTime, endTime } = req.body;
 
   //validate data
-  if (!userId || !workout || !metrics) {
+  if (!userId || !workout || !metrics || startTime) {
     return res.status(400).json({ message: "All fields required" });
   }
 
@@ -79,7 +79,7 @@ const createProgressLog = async (req, res) => {
   }
 
   //create progress log
-  const progressLog = await ProgressLog.create({ userId, workout, metrics });
+  const progressLog = await ProgressLog.create({ userId, workout, metrics, startTime, endTime });
 
   res.status(201).json({ progressLog });
 };
@@ -89,10 +89,10 @@ const createProgressLog = async (req, res) => {
 //@access  Private
 
 const updateProgressLog = async (req, res) => {
-  const { userId, id, workout, metrics } = req.body;
+  const { userId, id, workout, metrics, startTime, endTime } = req.body;
 
   //validate data
-  if (!id || !userId || !workout || !metrics) {
+  if (!id || !userId || !workout || !metrics || !startTime) {
     return res.status(400).json({ message: "All fields required" });
   }
 
@@ -111,7 +111,7 @@ const updateProgressLog = async (req, res) => {
   //update progress log
   const updatedProgressLog = await ProgressLog.findByIdAndUpdate(
     id,
-    { workout, metrics },
+    { workout, metrics, startTime, endTime },
     { new: true }
   );
 

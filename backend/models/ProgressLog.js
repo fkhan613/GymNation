@@ -18,6 +18,12 @@ const progressLogSchema = new mongoose.Schema({
     ref: "Workout",
     required: true,
   },
+  startTime: {
+    type: Date,
+  },
+  endTime: {
+    type: Date,
+  },
   metrics: [
     {
       exerciseId: {
