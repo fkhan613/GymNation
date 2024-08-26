@@ -63,8 +63,9 @@ export const createProgressLog = async (userId, workoutId, metrics) => {
   }
 };
 
-export const updateProgressLog = async (userId, id, workoutId, metrics) => {
+export const updateProgressLog = async (id, workoutId, metrics) => {
   const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   try {
     const response = await axios.patch(
@@ -88,8 +89,9 @@ export const updateProgressLog = async (userId, id, workoutId, metrics) => {
   }
 };
 
-export const deleteProgressLog = async (userId, id) => {
+export const deleteProgressLog = async (id) => {
   const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   try {
     const response = await axios.delete(`${API_URL}/progress-logs`, {
@@ -107,4 +109,3 @@ export const deleteProgressLog = async (userId, id) => {
     return {};
   }
 };
-
