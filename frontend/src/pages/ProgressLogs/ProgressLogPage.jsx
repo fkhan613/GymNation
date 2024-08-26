@@ -5,6 +5,7 @@ import { getUserProgressLogs } from "../../services/progressLog";
 import { getWorkoutById } from "../../services/workout";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useEffect, useState } from "react";
+import ProgressLogTableHeader from "../../components/ProgressLogsPage/ProgressLogTableHeader";
 
 const ProgressLogPage = () => {
   useTitle("Progress Logs | " + import.meta.env.VITE_APP_NAME);
@@ -61,19 +62,7 @@ const ProgressLogPage = () => {
       ) : (
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <table className="min-w-full leading-normal">
-            <thead>
-              <tr>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Date
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Workout
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
+            <ProgressLogTableHeader />
             <tbody>
               {progressLogs.map((log) => (
                 <tr key={log._id}>
