@@ -20,6 +20,8 @@ const progressLogSchema = new mongoose.Schema({
   },
   startTime: {
     type: Date,
+    required: true,
+    default: Date.now,
   },
   endTime: {
     type: Date,

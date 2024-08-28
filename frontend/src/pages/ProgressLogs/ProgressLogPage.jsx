@@ -15,11 +15,13 @@ import PulseLoader from "react-spinners/PulseLoader";
 import { useEffect, useState } from "react";
 import ProgressLogTableHeader from "../../components/ProgressLogsPage/ProgressLogTableHeader";
 import { toast } from "react-toastify";
+import ProgressLogModal from "../../components/ProgressLogsPage/ProgressLogModal";
 
 const ProgressLogPage = () => {
   useTitle("Progress Logs | " + import.meta.env.VITE_APP_NAME);
   const [progressLogs, setProgressLogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -95,7 +97,10 @@ const ProgressLogPage = () => {
                     {log.workoutName}
                   </td>
                   <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm flex gap-3">
-                    <button className=" bg-gray-900 hover:bg-blue-gray-700 text-white px-4 py-2 rounded-md transition duration-300 flex">
+                    <button 
+                        className=" bg-gray-900 hover:bg-blue-gray-700 text-white px-4 py-2 rounded-md transition duration-300 flex"
+                        onClick={() => setOpen(true)}
+                      >
                       <EyeIcon className="w-5 h-5 mr-3" />
                       View
                     </button>
@@ -103,14 +108,21 @@ const ProgressLogPage = () => {
                       <PencilSquareIcon className="w-5 h-5 mr-3" />
                       Edit
                     </button>
-                    <button 
-                      className="bg-red-500 hover:bg-red-900 text-white px-4 py-2 rounded-md transition duration-300 flex" 
+                    <button
+                      className="bg-red-500 hover:bg-red-900 text-white px-4 py-2 rounded-md transition duration-300 flex"
                       onClick={() => deleteLog(log._id)}
                     >
                       <TrashIcon className="w-5 h-5 mr-3" />
                       Delete
                     </button>
                   </td>
+                  {open && (
+                    <ProgressLogModal
+                      open={open}
+                      setOpen={setOpen}
+                      progressLog={log}
+                    />
+                  )}
                 </tr>
               ))}
             </tbody>

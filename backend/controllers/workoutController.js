@@ -60,11 +60,8 @@ const getWorkoutExercises = async (req, res) => {
 
   // Validate data
   if (!id || !userId) {
-    console.log("Validation failed - Workout ID:", id, "User ID:", userId);
     return res.status(400).json({ message: "Workout ID and user ID required" });
   }
-
-  console.log("Validation passed - Workout ID:", id, "User ID:", userId);
 
   try {
     const workout = await Workout.findById(id).lean().exec();
@@ -76,8 +73,6 @@ const getWorkoutExercises = async (req, res) => {
 
     // Check if the workout belongs to the user
     if (workout.userId.toString() !== userId) {
-      console.log("Workout User ID:", workout.userId, "Request User ID:", userId);
-      console.log("Unauthorized access - Workout ID:", id, "User ID:", userId);
       return res.status(403).json({ message: "Unauthorized" });
     }
 
