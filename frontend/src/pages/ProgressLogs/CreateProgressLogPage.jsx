@@ -5,7 +5,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
-
+import { Button } from "@material-tailwind/react";
 
 const CreateProgressLogPage = () => {
   useTitle("Create Progress Log | " + import.meta.env.VITE_APP_NAME);
@@ -13,6 +13,8 @@ const CreateProgressLogPage = () => {
   const [selectedWorkout, setSelectedWorkout] = useState("");
   const [exercises, setExercises] = useState([]);
   const [metrics, setMetrics] = useState([]);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -65,18 +67,16 @@ const CreateProgressLogPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    const userId = JSON.parse(localStorage.getItem("user"))._id;
-
     try {
       const response = await createProgressLog(
-        userId,
         selectedWorkout,
-        metrics
+        metrics,
+        startTime,
+        endTime
       );
       if (response) {
         toast.success("Progress log created successfully.");
         navigate("/dashboard/progress-logs");
-
       } else {
         toast.error("An error occurred while creating the progress log.");
       }
@@ -89,6 +89,10 @@ const CreateProgressLogPage = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+      <Button size="sm" onClick={() => navigate("/dashboard/progress-logs")}>
+        Back
+      </Button>
+
       <h1 className="text-2xl font-bold text-center mb-6">
         Create Progress Log
       </h1>
@@ -114,6 +118,34 @@ const CreateProgressLogPage = () => {
               </option>
             ))}
           </select>
+
+          <div className="flex mt-6 flex-col align-middle gap-8">
+            <div>
+              <label
+                htmlFor="start-time"
+                className="block text-sm text-gray-700"
+              >
+                Start Time
+              </label>
+              <input
+                type="datetime-local"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="mt-1 block w-1/2 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label htmlFor="end-time" className="block text-sm text-gray-700">
+                End Time
+              </label>
+              <input
+                type="datetime-local"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="mt-1 block w-1/2 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
         </div>
         <div className="flex flex-col gap-6">
           {exercises.map((exercise, exerciseIndex) => (

@@ -64,10 +64,11 @@ const getProgressLogById = async (req, res) => {
 //@access  Private
 
 const createProgressLog = async (req, res) => {
-  const { userId, workout, metrics, startTime, endTime } = req.body;
+  const { userId, workoutId, metrics, startTime, endTime } = req.body;
+
 
   //validate data
-  if (!userId || !workout || !metrics || startTime) {
+  if (!userId || !workoutId || !metrics || !startTime) {
     return res.status(400).json({ message: "All fields required" });
   }
 
@@ -79,7 +80,7 @@ const createProgressLog = async (req, res) => {
   }
 
   //create progress log
-  const progressLog = await ProgressLog.create({ userId, workout, metrics, startTime, endTime });
+  const progressLog = await ProgressLog.create({ userId, workoutId, metrics, startTime, endTime });
 
   res.status(201).json({ progressLog });
 };
