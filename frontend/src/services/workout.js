@@ -24,6 +24,8 @@ export const getWorkoutById = async (id) => {
   const accessToken = localStorage.getItem("accessToken");
   const userId = JSON.parse(localStorage.getItem("user"))._id;
 
+  console.log("Workout ID:", id, "User ID:", userId);
+
   try {
     const response = await axios.get(`${API_URL}/workouts/${id}`, {
       headers: {

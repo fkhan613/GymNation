@@ -19,12 +19,12 @@ const progressLogSchema = new mongoose.Schema({
     required: true,
   },
   startTime: {
-    type: Date,
+    type: String,
     required: true,
     default: Date.now,
   },
   endTime: {
-    type: Date,
+    type: String,
   },
   metrics: [
     {

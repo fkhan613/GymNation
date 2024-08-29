@@ -20,8 +20,9 @@ export const getUserProgressLogs = async (userId) => {
   }
 };
 
-export const getProgressLogById = async (userId, id) => {
+export const getProgressLogById = async (id) => {
   const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   try {
     const response = await axios.get(`${API_URL}/progress-logs/${id}`, {
@@ -42,6 +43,8 @@ export const getProgressLogById = async (userId, id) => {
 export const createProgressLog = async (workoutId, metrics, startTime, endTime) => {
   const accessToken = localStorage.getItem("accessToken");
   const userId = JSON.parse(localStorage.getItem("user"))._id;
+
+  console.log(startTime, endTime);
 
   try {
     const response = await axios.post(
@@ -66,7 +69,7 @@ export const createProgressLog = async (workoutId, metrics, startTime, endTime) 
   }
 };
 
-export const updateProgressLog = async (id, workoutId, metrics) => {
+export const updateProgressLog = async (id, workoutId, metrics, startTime, endTime) => {
   const accessToken = localStorage.getItem("accessToken");
   const userId = JSON.parse(localStorage.getItem("user"))._id;
 
@@ -78,6 +81,8 @@ export const updateProgressLog = async (id, workoutId, metrics) => {
         userId,
         workoutId,
         metrics,
+        startTime,
+        endTime,
       },
       {
         headers: {

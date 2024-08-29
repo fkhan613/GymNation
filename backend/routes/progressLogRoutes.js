@@ -11,7 +11,7 @@ router
   .delete(protect, progressLogController.deleteProgressLog);
 
 router
-  .route("/progress-logs/:id")
+  .route("/:id")
   .get(protect, progressLogController.getProgressLogById);
 
 module.exports = router;
