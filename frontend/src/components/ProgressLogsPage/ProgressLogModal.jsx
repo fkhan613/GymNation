@@ -7,14 +7,13 @@ import {
 } from "@headlessui/react";
 
 import logo from "../../assets/gymnation-logo.png";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { getExercisesByWorkout } from "../../services/workout";
+import { useNavigate } from "react-router-dom";
 
 export default function ProgressLogModal({ progressLog, open, setOpen }) {
-
   const [exercises, setExercises] = useState([]);
-  const [metrics, setMetrics] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -26,8 +25,6 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
 
     fetchExercises();
   }, [progressLog.workoutId]);
-
-
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -42,7 +39,11 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
             transition
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
           >
-            <img className="w-36 mx-auto max-h-52 mt-4" src={logo} alt="GymNation" />
+            <img
+              className="w-36 mx-auto max-h-52 mt-4"
+              src={logo}
+              alt="GymNation"
+            />
             <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="flex justify-center">
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0">
@@ -83,7 +84,8 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
                         return (
                           <tr key={exercise._id}>
                             <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
-                              {exercise.name[0].toUpperCase() + exercise.name.slice(1)}
+                              {exercise.name[0].toUpperCase() +
+                                exercise.name.slice(1)}
                             </td>
                             <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                               {metric.sets.map((set, index) => (
@@ -101,7 +103,16 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-4">
+              <button
+                type="button"
+                onClick={() =>
+                  navigate(`/dashboard/progress-logs/edit/${progressLog._id}`)
+                }
+                className="mt-3 inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-indigo-900 sm:mt-0 sm:w-auto transition duration-300"
+              >
+                Edit
+              </button>
               <button
                 type="button"
                 onClick={() => setOpen(false)}

@@ -35,7 +35,7 @@ function App() {
           <Route path="progress-logs">
             <Route index element={<ProgressLogsPage />} />
             <Route path="create-log" element={<CreateProgressLogPage />} />
-            <Route path="edit/:id" element={<EditProgressLogPage />} />
+            <Route path="edit/:logId" element={<EditProgressLogPage />} />
           </Route>
 
           <Route path="profile/:id" element={<UserProfilePage />} />

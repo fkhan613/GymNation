@@ -104,7 +104,9 @@ const ProgressLogPage = () => {
                       <EyeIcon className="w-5 h-5 mr-3" />
                       View
                     </button>
-                    <button className="bg-indigo-500 hover:bg-indigo-900 text-white px-4 py-2 rounded-md transition duration-300 flex">
+                    <button 
+                      className="bg-indigo-500 hover:bg-indigo-900 text-white px-4 py-2 rounded-md transition duration-300 flex" 
+                      onClick={() => navigate(`/dashboard/progress-logs/edit/${log._id}`)}>
                       <PencilSquareIcon className="w-5 h-5 mr-3" />
                       Edit
                     </button>
