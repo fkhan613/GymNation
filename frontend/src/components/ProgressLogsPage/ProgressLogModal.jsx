@@ -77,7 +77,7 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {exercises.map((exercise) => {
+                      {exercises?.map((exercise) => {
                         const metric = progressLog.metrics.find(
                           (m) => m.exerciseId === exercise._id
                         );
@@ -88,12 +88,12 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
                                 exercise.name.slice(1)}
                             </td>
                             <td className="px-5 py-3 border-b border-gray-200 bg-white text-sm">
-                              {metric.sets.map((set, index) => (
+                              {metric?.sets?.map((set, index) => (
                                 <div key={index} className="flex gap-10">
-                                  <span>{set.weight} lbs</span>
-                                  <span>{set.reps} reps</span>
+                                  <span>{set?.weight} lbs</span>
+                                  <span>{set?.reps} reps</span>
                                 </div>
-                              ))}
+                              )) || <span>No sets available</span>}
                             </td>
                           </tr>
                         );
