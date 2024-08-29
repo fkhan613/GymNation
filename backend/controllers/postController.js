@@ -4,7 +4,6 @@ const User = require("../models/User");
 // @desc Get all posts, sorted by most recent and paginated
 // @route GET /posts
 // @access private
-
 const getAllPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 50;
@@ -33,17 +32,14 @@ const getAllPosts = async (req, res) => {
     .skip(startIndex)
     .exec();
 
-  res.json({posts: "Here are your posts"});
-
-  // res.json(results);
+  res.json(results);
 };
 
 // @desc Get post by ID
 // @route GET /posts/:id
 // @access private
-
 const getPostById = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   // Validate data
   if (!id) {
@@ -52,19 +48,37 @@ const getPostById = async (req, res) => {
 
   const post = await Post.findById(id).lean().exec();
 
-  //check if post exists
+  // Check if post exists
   if (!post) {
     return res.status(404).json({ message: "Post not found" });
   }
 
-  //post has been found, return the post
+  // Post has been found, return the post
   res.json(post);
 };
+
+const getPostsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  // Validate data
+  if (!userId) {
+    return res.status(400).json({ message: "User ID Required" });
+  }
+
+  const posts = await Post.find({ userId }).lean().exec();
+
+  // Check if post exists
+  if (!posts) {
+    return res.status(404).json({ message: "Posts not found" });
+  }
+
+  // Posts have been found, return the posts
+  res.json(posts);
+}
 
 // @desc Create new post
 // @route POST /posts
 // @access private
-
 const createNewPost = async (req, res) => {
   const { userId, caption, image, tags } = req.body;
 
@@ -73,14 +87,14 @@ const createNewPost = async (req, res) => {
     return res.status(400).json({ message: "User ID and Image Required" });
   }
 
-  //check if the user exists
+  // Check if the user exists
   const user = await User.findById(userId).lean().exec();
 
   if (!user) {
     return res.status(404).json({ message: "Post owner not found" });
   }
 
-  //check if the tags is an array of strings
+  // Check if the tags is an array of strings
   if (tags && !Array.isArray(tags)) {
     return res
       .status(400)
@@ -103,23 +117,22 @@ const createNewPost = async (req, res) => {
 // @desc Update post by ID
 // @route PUT /posts
 // @access private
-
 const updatePostById = async (req, res) => {
-  const { id, caption, image, tags } = req.body;
+  const { id, userId, caption, image, tags } = req.body;
 
   // Validate data
   if (!id || !image) {
     return res.status(400).json({ message: "Post ID and Image Required" });
   }
 
-  //check if the user exists
+  // Check if the user exists
   const user = await User.findById(userId).lean().exec();
 
   if (!user) {
     return res.status(404).json({ message: "Post owner not found" });
   }
 
-  //check if the tags is an array of strings
+  // Check if the tags is an array of strings
   if (tags && !Array.isArray(tags)) {
     return res
       .status(400)
@@ -128,59 +141,61 @@ const updatePostById = async (req, res) => {
 
   const oldPost = await Post.findById(id).exec();
 
-  //check if post exists
+  // Check if post exists
   if (!oldPost) {
     return res.status(404).json({ message: "Post not found" });
   }
 
-  //check if the post belongs to the user
-  if (oldPost.userId !== userId) {
+  // Check if the post belongs to the user
+  if (oldPost.userId.toString() !== userId) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  const updatedPost = await Post.findByIdAndUpdate(id).exec();
+  oldPost.caption = caption || oldPost.caption;
+  oldPost.image = image || oldPost.image;
+  oldPost.tags = tags || oldPost.tags;
 
-  //post has been found and updated, return the updated post
+  const updatedPost = await oldPost.save();
+
+  // Post has been found and updated, return the updated post
   res.json(updatedPost);
 };
 
 // @desc Delete post by ID
 // @route DELETE /posts
 // @access private
-
 const deletePostById = async (req, res) => {
-  const { id } = req.body;
+  const { id, userId } = req.body;
 
   // Validate data
   if (!id) {
     return res.status(400).json({ message: "Post ID Required" });
   }
 
-  //get the post to be deleted
+  // Get the post to be deleted
   const deletedPost = await Post.findById(id).exec();
 
-  //check if post exists
+  // Check if post exists
   if (!deletedPost) {
     return res.status(404).json({ message: "Post not found" });
   }
 
-  //check if the post belongs to the user
-  if (deletedPost.userId !== userId) {
+  // Check if the post belongs to the user
+  if (deletedPost.userId.toString() !== userId) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   // Delete post
   await Post.findByIdAndDelete(id);
 
-  //post has been found and deleted
+  // Post has been found and deleted
   res.json({ message: "Post deleted" });
 };
-
-//!FIND A WAY TO ADD LIKES AND COMMENTS
 
 module.exports = {
   getAllPosts,
   getPostById,
+  getPostsByUserId,
   createNewPost,
   updatePostById,
   deletePostById,
