@@ -21,7 +21,7 @@ import {
   InboxIcon,
   PowerIcon,
   BoltIcon,
-  GlobeAmericasIcon
+  GlobeAmericasIcon,
 } from "@heroicons/react/24/solid";
 import {
   CubeTransparentIcon,
@@ -214,7 +214,14 @@ const Sidebar = () => {
                 />
               </ListItemSuffix>
             </ListItem>
-            <ListItem>
+            <ListItem
+              onClick={() => {
+                closeDrawer();
+                navigate(
+                  "/dashboard/profile"
+                );
+              }}
+            >
               <ListItemPrefix>
                 <UserCircleIcon className="h-5 w-5" />
               </ListItemPrefix>

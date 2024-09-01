@@ -152,11 +152,96 @@ const deleteUserById = async (req, res) => {
   res.json(reply);
 };
 
-//!FIND A WAY TO FOLLOW AND UNFOLLOW USERS
+const getUserProfile = async (req, res) => {
+  const { userId } = req.query;
+
+  // Validate data
+  if (!userId) {
+    return res.status(400).json({ message: "User ID Required" });
+  }
+
+  const user = await User.findById(userId).select("-password").lean().exec();
+
+  //check if user exists
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  //user has been found, return the user
+  res.json(user);
+};
+
+const getUserFollowing = async (req, res) => {
+  const { userId } = req.params;
+
+  // Validate data
+  if (!userId) {
+    return res.status(400).json({ message: "User ID Required" });
+  }
+
+  const user = await User.findById(userId).select("following").lean().exec();
+
+  //check if user exists
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  //user has been found, return the user
+  res.json(user);
+};
+
+const getUserFollowers = async (req, res) => {
+  const { userId } = req.params;
+
+  // Validate data
+  if (!userId) {
+    return res.status(400).json({ message: "User ID Required" });
+  }
+
+  const user = await User.findById(userId).select("followers").lean().exec();
+
+  //check if user exists
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  //user has been found, return the user
+  res.json(user);
+};
+
+const updateUserProfilePicture = async (req, res) => {
+  const { userId } = req.params;
+  const { pfp } = req.body;
+
+  // Validate data
+  if (!userId || !profilePicture) {
+    return res
+      .status(400)
+      .json({ message: "User ID and Profile Picture Required" });
+  }
+
+  // Does the user exist?
+  const user = await User.findById(userId).exec();
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Update user
+  user.pfp = pfp;
+
+  const result = await user.save();
+
+  res.json(result);
+};
 
 module.exports = {
   getUserById,
   createNewUser,
   updateUserById,
   deleteUserById,
+  getUserProfile,
+  getUserFollowing,
+  getUserFollowers,
+  updateUserProfilePicture,
 };

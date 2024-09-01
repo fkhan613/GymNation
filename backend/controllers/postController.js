@@ -115,7 +115,7 @@ const createNewPost = async (req, res) => {
 };
 
 // @desc Update post by ID
-// @route PUT /posts
+// @route PATCH /posts
 // @access private
 const updatePostById = async (req, res) => {
   const { id, userId, caption, image, tags } = req.body;

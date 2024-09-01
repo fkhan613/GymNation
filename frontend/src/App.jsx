@@ -38,7 +38,7 @@ function App() {
             <Route path="edit/:logId" element={<EditProgressLogPage />} />
           </Route>
 
-          <Route path="profile/:id" element={<UserProfilePage />} />
+          <Route path="profile" element={<UserProfilePage />} />
         </Route>
       </Route>
     </Routes>

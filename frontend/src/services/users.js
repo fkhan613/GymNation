@@ -29,18 +29,101 @@ export const register = async (firstName, lastName, email, password, username) =
   } 
 }
 
-// export const fetchProtectedData = async () => {
-//   const token = localStorage.getItem("token");
-//   try {
-//     const response = await axios.get(`${API_URL}/protected`, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     throw new Error(
-//       error.response?.data?.message || "Failed to fetch protected data"
-//     );
-//   }
-// };
+export const getUserProfile = async (userId) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await axios.get(`${API_URL}/users/profile`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params:{
+        userId: userId,
+      } 
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch user profile"
+    );
+  }
+};
+
+export const getUserPosts = async (userId) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await axios.get(`${API_URL}/posts/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch user posts"
+    );
+  }
+};
+
+export const getUserFollowers = async (userId) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await axios.get(`${API_URL}/users/${userId}/followers`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch user followers"
+    );
+  }
+};
+
+export const getUserFollowing = async (userId) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await axios.get(`${API_URL}/users/${userId}/following`, {
+      headers: {
+        Authorization: `Bearer ${accessToken
+        }`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch user following"
+    );
+  }
+};
+
+export const updateUserProfilePicture = async (userId, newProfilePicture) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    const response = await axios.patch(
+      `${API_URL}/users/${userId}/profilePicture`,{
+        pfp: newProfilePicture,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to update profile picture"
+    );
+  }
+};

@@ -12,4 +12,10 @@ router
 
 router.route("/:id").get(protect, postController.getPostById);
 
+router.route("/user/:userId").get(protect, postController.getPostsByUserId);
+
+
+
+
+
 module.exports = router;
