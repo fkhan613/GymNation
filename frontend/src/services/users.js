@@ -105,14 +105,19 @@ export const getUserFollowing = async (userId) => {
   }
 };
 
-export const updateUserProfilePicture = async (userId, newProfilePicture) => {
+export const updateUserProfilePicture = async (userId, pfp) => {
 
   const accessToken = localStorage.getItem("accessToken");
 
   try {
+
+    // Upload the user's profile picture
+    const pfpUrl = await uploadUserPfp(pfp);
+
+    // Send a PATCH request to update the user's profile picture
     const response = await axios.patch(
       `${API_URL}/users/${userId}/profilePicture`,{
-        pfp: newProfilePicture,
+        pfp: pfpUrl,
       },
       {
         headers: {
@@ -125,5 +130,27 @@ export const updateUserProfilePicture = async (userId, newProfilePicture) => {
     throw new Error(
       error.response?.data?.message || "Failed to update profile picture"
     );
+  }
+};
+
+export const uploadUserPfp = async (pfp) => {
+  const formData = new FormData();
+  formData.append("image", pfp);
+
+  try {
+    console.log("Uploading cover photo:", pfp);
+    const response = await axios.post(`${API_URL}/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log("Upload response:", response.data);
+    return response.data.fileUrl;
+  } catch (error) {
+    console.error(
+      "Error uploading cover photo:",
+      error.response ? error.response.data : error.message
+    );
+    return null;
   }
 };

@@ -214,7 +214,7 @@ const updateUserProfilePicture = async (req, res) => {
   const { pfp } = req.body;
 
   // Validate data
-  if (!userId || !profilePicture) {
+  if (!userId || !pfp) {
     return res
       .status(400)
       .json({ message: "User ID and Profile Picture Required" });

@@ -54,7 +54,7 @@ const UserProfilePage = () => {
 
   const handleChangeProfilePicture = async (newProfilePicture) => {
     const updatedUser = await updateUserProfilePicture(
-      user.id,
+      user._id,
       newProfilePicture
     );
     setUser(updatedUser);
