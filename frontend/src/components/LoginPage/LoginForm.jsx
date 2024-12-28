@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import InputField from "./InputField";
-import SocialLogin from "./SocialLogin";
 import { login } from "../../services/users";
 
 const LoginForm = () => {

@@ -8,7 +8,8 @@ This is a basic readme, currently being used to keep track of the technologies a
 - User can create,read and delete comments
 - User can like and unlike posts
 - User can follow and unfollow other users
-- User can view their profile and other users' profiles
+- User can view their profile 
+- User can view other users' profiles
 - User can upload a profile picture
 - User can search for other users
 - User can search for posts
