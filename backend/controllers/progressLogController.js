@@ -22,7 +22,10 @@ const getProgressLogs = async (req, res) => {
   }
 
   //get progress logs
-  const progressLogs = await ProgressLog.find({ userId }).lean().exec();
+  const progressLogs = await ProgressLog.find({ userId })
+    .sort({ date: -1 })
+    .lean()
+    .exec();
 
   //check if prgress logs exist
   if (!progressLogs) {
@@ -135,7 +138,7 @@ const updateProgressLog = async (req, res) => {
       workoutId,
       metrics,
       startTime,
-      endTime
+      endTime,
     },
     { new: true }
   );
