@@ -51,7 +51,21 @@ export default function ProgressLogModal({ progressLog, open, setOpen }) {
                     as="h2"
                     className="text-lg font-semibold leading-6 text-gray-900 mb-3"
                   >
-                    {new Date(progressLog.date).toLocaleString()}
+                    {new Date(progressLog.date).toLocaleDateString()}
+                  </DialogTitle>
+                  <DialogTitle
+                    as="h2"
+                    className="text-lg font-semibold leading-6 text-gray-900 mb-3"
+                  >
+                    {new Date(progressLog.startTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}{" "}
+                    -{" "}
+                    {new Date(progressLog.endTime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </DialogTitle>
                 </div>
               </div>
