@@ -7,7 +7,8 @@ import {
   fetchExerciseByName,
   fetchExerciseByTargetMuscle,
 } from "..//../services/exercise";
-import { createWorkout, uploadWorkoutCoverPhoto } from "../../services/workout";
+import { createWorkout } from "../../services/workout";
+import { uploadPhoto } from "../../services/upload";
 import { useNavigate } from "react-router-dom";
 import AddExercisesSection from "./AddExercisesSection";
 import WorkoutInformationSection from "./WorkoutInformationSection";
@@ -72,7 +73,7 @@ const CreateWorkoutForm = () => {
     }
 
     if (coverPhoto) {
-      const result = await uploadWorkoutCoverPhoto(coverPhoto);
+      const result = await uploadPhoto(coverPhoto);
       if (result) {
         setCoverPhotoUrl(result);
       } else {

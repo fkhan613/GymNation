@@ -184,25 +184,3 @@ export const deleteWorkoutById = async (id, userId) => {
     return {};
   }
 };
-
-export const uploadWorkoutCoverPhoto = async (coverPhoto) => {
-  const formData = new FormData();
-  formData.append("image", coverPhoto);
-
-  try {
-    const response = await axios.post(`${API_URL}/upload`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    return response.data.fileUrl;
-  } catch (error) {
-    console.error(
-      "Error uploading cover photo:",
-      error.response ? error.response.data : error.message
-    );
-    return null;
-  }
-};
-
-export default uploadWorkoutCoverPhoto;
