@@ -190,13 +190,11 @@ export const uploadWorkoutCoverPhoto = async (coverPhoto) => {
   formData.append("image", coverPhoto);
 
   try {
-    console.log("Uploading cover photo:", coverPhoto);
     const response = await axios.post(`${API_URL}/upload`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log("Upload response:", response.data);
     return response.data.fileUrl;
   } catch (error) {
     console.error(

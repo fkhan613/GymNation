@@ -33,7 +33,6 @@ const getWorkoutById = async (req, res) => {
   const { userId } = req.query;
   const { id } = req.params;
 
-
   // Validate data
   if (!id || !userId) {
     return res.status(400).json({ message: "Workout ID and User ID Required" });
@@ -188,6 +187,7 @@ const updateWorkoutById = async (req, res) => {
 
   // Validate coverPhoto URL
   if (coverPhoto && typeof coverPhoto !== "string") {
+    console.log("Cover photo INVALID:", coverPhoto);
     return res.status(400).json({ message: "Cover photo must be a valid URL" });
   }
 

@@ -7,7 +7,10 @@ import {
   fetchExerciseByName,
   fetchExerciseByTargetMuscle,
 } from "..//../services/exercise";
-import { updateWorkoutById } from "../../services/workout";
+import {
+  updateWorkoutById,
+  uploadWorkoutCoverPhoto,
+} from "../../services/workout";
 import { useLocation, useNavigate } from "react-router-dom";
 import AddExercisesSection from "./AddExercisesSection";
 import WorkoutInformationSection from "./WorkoutInformationSection";
@@ -17,6 +20,7 @@ const EditWorkoutForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [coverPhoto, setCoverPhoto] = useState(null);
+  const [coverPhotoUrl, setCoverPhotoUrl] = useState("");
   const [visibility, setVisibility] = useState("");
   const [exercises, setExercises] = useState([]);
   const [dragActive, setDragActive] = useState(false);
@@ -30,7 +34,6 @@ const EditWorkoutForm = () => {
     const workoutName = queryParams.get("name");
     const workoutDescription = queryParams.get("description");
     const workoutVisibility = queryParams.get("visibility");
-    const workoutCoverPhoto = queryParams.get("coverPhoto");
     const workoutExercises = JSON.parse(
       localStorage.getItem("tempExercises")
     ).exercises;
@@ -41,8 +44,39 @@ const EditWorkoutForm = () => {
     if (workoutDescription) setDescription(workoutDescription);
     if (workoutVisibility) setVisibility(workoutVisibility);
     if (workoutExercises.length > 0) setSelectedExercises(workoutExercises);
-    if (workoutCoverPhoto) setCoverPhoto(workoutCoverPhoto);
   }, [location.search]);
+
+  useEffect(() => {
+    if (coverPhotoUrl) {
+      handleUpdateWorkout();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coverPhotoUrl]);
+
+  const handleUpdateWorkout = async () => {
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    const workoutId = location.pathname.split("/").pop();
+
+    const result = await updateWorkoutById(
+      workoutId,
+      userId,
+      name,
+      description,
+      selectedExercises,
+      visibility,
+      coverPhotoUrl
+    );
+
+    console.log(result);
+
+    if (result) {
+      toast.success("Workout updated successfully");
+      localStorage.removeItem("tempExercises");
+      navigate("/dashboard/workouts");
+    } else {
+      toast.error("Error updating workout");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,27 +97,17 @@ const EditWorkoutForm = () => {
       return;
     }
 
-    const userId = JSON.parse(localStorage.getItem("user"))._id;
-    const workoutId = location.pathname.split("/").pop();
-
-    console.log(workoutId);
-
-    const result = await updateWorkoutById(
-      workoutId,
-      userId,
-      name,
-      description,
-      selectedExercises,
-      visibility,
-      coverPhoto
-    );
-
-    console.log(result);
-
-    if (result) {
-      toast.success("Workout updated successfully");
-      localStorage.removeItem("tempExercises");
-      navigate("/dashboard/workouts");
+    if (coverPhoto) {
+      const result = await uploadWorkoutCoverPhoto(coverPhoto);
+      if (result) {
+        console.log("RESULT", result);
+        setCoverPhotoUrl(result);
+      } else {
+        toast.error("Error uploading cover photo");
+        return; // Exit if cover photo upload fails
+      }
+    } else {
+      handleUpdateWorkout();
     }
   };
 
