@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { PlusCircleIcon } from "@heroicons/react/20/solid";
 
 const AddPostButton = ({ onAddPost }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -19,8 +20,9 @@ const AddPostButton = ({ onAddPost }) => {
     <div>
       <button
         onClick={() => setIsAdding(true)}
-        className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300"
+        className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md transition duration-300 flex items-center gap-2"
       >
+        <PlusCircleIcon className="w-5 h-5" />
         Add Post
       </button>
       {isAdding && (
@@ -47,18 +49,21 @@ const AddPostButton = ({ onAddPost }) => {
               onChange={(e) => setTags(e.target.value)}
               className="border p-2 w-full mb-2"
             />
-            <button
-              onClick={handleAdd}
-              className="bg-blue-500 text-white p-2 rounded"
-            >
-              Add
-            </button>
-            <button
-              onClick={() => setIsAdding(false)}
-              className="bg-gray-500 text-white p-2 rounded ml-2"
-            >
-              Cancel
-            </button>
+            <div className="flex justify-start gap-2 mt-5">
+              <button
+                onClick={handleAdd}
+                className="bg-indigo-500 hover:bg-indigo-600 text-white p-2 rounded flex items-center gap-2"
+              >
+                <PlusCircleIcon className="w-5 h-5" />
+                Add
+              </button>
+              <button
+                onClick={() => setIsAdding(false)}
+                className="bg-gray-500 text-white p-2 rounded ml-2"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}

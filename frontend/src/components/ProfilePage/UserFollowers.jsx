@@ -6,7 +6,7 @@ const UserFollowing = ({ followers = [] }) => {
 
   return (
     <div>
-      <h3 className="text-xl font-semibold">Following</h3>
+      <h3 className="text-xl font-semibold">Followers</h3>
       <ul className="mt-2">
         {validUserFollowers.map((follow) => (
           <li key={follow.id} className="flex items-center mt-2">
