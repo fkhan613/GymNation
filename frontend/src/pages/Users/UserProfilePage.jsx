@@ -25,7 +25,9 @@ const UserProfilePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const userProfile = await getUserProfile(JSON.parse(localStorage.getItem("user"))._id);
+      const userProfile = await getUserProfile(
+        JSON.parse(localStorage.getItem("user"))._id
+      );
       setUser(userProfile);
       const userPosts = await getUserPosts(userProfile._id);
       setPosts(userPosts);
@@ -52,10 +54,11 @@ const UserProfilePage = () => {
     setPosts(posts.filter((post) => post.id !== id));
   };
 
-  const handleChangeProfilePicture = async (newProfilePicture) => {
+  const handleChangeProfilePicture = async (newProfilePictureUrl) => {
+    console.log("FROM handleChangeProfilePicture", newProfilePictureUrl);
     const updatedUser = await updateUserProfilePicture(
       user._id,
-      newProfilePicture
+      newProfilePictureUrl
     );
     setUser(updatedUser);
   };
@@ -66,16 +69,12 @@ const UserProfilePage = () => {
     <div className="container mx-auto p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <img
-            src={user.pfp}
-            className="w-24 h-24 rounded-full"
+          <ChangeProfilePicture
+            currentPfp={user.pfp}
+            onChangeProfilePicture={handleChangeProfilePicture}
           />
           <div className="ml-4">
             <h2 className="text-2xl font-semibold">{user.username}</h2>
-            <ChangeProfilePicture
-              user={user}
-              onChangeProfilePicture={handleChangeProfilePicture}
-            />
           </div>
         </div>
         <AddPostButton onAddPost={handleAddPost} />
