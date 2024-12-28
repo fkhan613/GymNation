@@ -75,7 +75,6 @@ const CreateWorkoutForm = () => {
       const result = await uploadWorkoutCoverPhoto(coverPhoto);
       if (result) {
         setCoverPhotoUrl(result);
-        handleCreateWorkout(); // Call after setting cover photo URL
       } else {
         toast.error("Error uploading cover photo");
         return; // Exit if cover photo upload fails
