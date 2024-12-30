@@ -1,14 +1,12 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import { toast } from "react-toastify";
 import { uploadPhoto } from "../../services/upload";
 import { FaPencilAlt } from "react-icons/fa";
 
 const ChangeProfilePicture = ({ currentPfp, onChangeProfilePicture }) => {
-  const [newProfilePicture, setNewProfilePicture] = useState(null);
 
   const handleFileChange = async (e) => {
     if (e.target.files && e.target.files[0]) {
-      setNewProfilePicture(e.target.files[0]);
       const result = await uploadPhoto(e.target.files[0]);
       if (result) {
         onChangeProfilePicture(result);
