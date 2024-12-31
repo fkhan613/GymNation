@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { getUserProfile, updateUserProfilePicture } from "../../services/users";
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-
+import {useNavigate} from "react-router-dom";
 
 const UserProfilePage = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +39,18 @@ const UserProfilePage = () => {
           />
           <div className="ml-4">
             <h2 className="text-2xl font-semibold">{user.username}</h2>
-            <button className="text-indigo-500 hover:text-indigo-900 transition-all">Edit Profile</button>
+            <button
+              className="text-indigo-500 hover:text-indigo-900 transition-all"
+              onClick={() => navigate("/dashboard/profile/edit")}
+            >
+              Edit Profile
+            </button>
           </div>
         </div>
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center gap-2"
+          onClick={() => navigate("/dashboard/profile/create-post")}
         >
           <PlusCircleIcon className="w-5 h-5" />
           Add Post

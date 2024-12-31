@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import UserProfilePage from "./pages/Users/UserProfilePage";
+import EditProfilePage from "./pages/Users/EditProfilePage";
+import AddPostPage from "./pages/Users/AddPostPage";
 import CreateWorkoutPage from "./pages/Workouts/CreateWorkoutPage";
 import EditWorkoutPage from "./pages/Workouts/EditWorkoutPage";
 import WorkoutsPage from "./pages/Workouts/WorkoutsPage";
@@ -38,7 +40,11 @@ function App() {
             <Route path="edit/:logId" element={<EditProgressLogPage />} />
           </Route>
 
-          <Route path="profile" element={<UserProfilePage />} />
+          <Route path="profile">
+            <Route index element={<UserProfilePage />} />
+            <Route path="edit" element={<EditProfilePage />} />
+            <Route path="create-post" element={<AddPostPage />} />
+          </Route>
         </Route>
       </Route>
     </Routes>
