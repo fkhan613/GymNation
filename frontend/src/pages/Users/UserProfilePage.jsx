@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getUserProfile } from "../../services/users";
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -24,7 +24,12 @@ const UserProfilePage = () => {
     <div className="container mx-auto p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <ChangeProfilePicture user={user} setUser={setUser} />
+          <ChangeProfilePicture
+            user={user}
+            setUser={setUser}
+            isEditable={false}
+            size="90"
+          />
           <div className="ml-4">
             <h2 className="text-2xl font-semibold">{user.username}</h2>
             <button
