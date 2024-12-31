@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getUserProfile, updateUserProfilePicture } from "../../services/users";
+import { getUserProfile } from "../../services/users";
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import {useNavigate} from "react-router-dom";
@@ -18,25 +18,13 @@ const UserProfilePage = () => {
     fetchData();
   }, []);
 
-  const handleChangeProfilePicture = async (newProfilePictureUrl) => {
-    console.log("FROM handleChangeProfilePicture", newProfilePictureUrl);
-    const updatedUser = await updateUserProfilePicture(
-      user._id,
-      newProfilePictureUrl
-    );
-    setUser(updatedUser);
-  };
-
   if (!user) return <div>Loading...</div>;
 
   return (
     <div className="container mx-auto p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <ChangeProfilePicture
-            currentPfp={user.pfp}
-            onChangeProfilePicture={handleChangeProfilePicture}
-          />
+          <ChangeProfilePicture user={user} setUser={setUser} />
           <div className="ml-4">
             <h2 className="text-2xl font-semibold">{user.username}</h2>
             <button
