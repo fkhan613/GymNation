@@ -129,3 +129,25 @@ export const updateUserProfilePicture = async (userId, pfpUrl) => {
   }
 };
 
+export const updateUserProfile = async (userId, updates) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  try {
+    // Send a PATCH request to update the user's profile
+    const response = await axios.patch(
+      `${API_URL}/users/${userId}`,
+      updates,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to update profile"
+    );
+  }
+}
+

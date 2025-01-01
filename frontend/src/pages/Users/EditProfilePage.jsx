@@ -1,6 +1,8 @@
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
 import { useState, useEffect } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
+import { FaSave } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const EditProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -11,7 +13,6 @@ const EditProfilePage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [bio, setBio] = useState("");
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +26,6 @@ const EditProfilePage = () => {
         setUsername(parsedUserProfile.username);
         setEmail(parsedUserProfile.email);
         setBio(parsedUserProfile.bio);
-        
       }
       setLoading(false);
     };
@@ -49,7 +49,7 @@ const EditProfilePage = () => {
         size={15}
       />
       <form
-        className="m-6 p-6 shadow-lg max-w-2xl w-full"
+        className="m-6 p-6 shadow-lg max-w-2xl w-full shadow-indigo-gray-100"
         action="#"
         method="POST"
       >
@@ -66,111 +66,74 @@ const EditProfilePage = () => {
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <label
-              htmlFor="first_name"
+              htmlFor="firstName"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               First name
             </label>
             <input
               type="text"
-              id="first_name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              id="firstName"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
               placeholder="John"
               required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div>
             <label
-              htmlFor="last_name"
+              htmlFor="lastName"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Last name
             </label>
             <input
               type="text"
-              id="last_name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              id="lastName"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
               placeholder="Doe"
               required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div>
             <label
-              htmlFor="company"
+              htmlFor="username"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Company
+              Username
             </label>
             <input
               type="text"
-              id="company"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              id="username"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
               placeholder="Flowbite"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div>
+          <div className="">
             <label
-              htmlFor="phone"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Phone number
+              Email address
             </label>
             <input
-              type="tel"
-              id="phone"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="123-45-678"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              type="email"
+              id="email"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
+              placeholder="john.doe@username.com"
               required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="website"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Website URL
-            </label>
-            <input
-              type="url"
-              id="website"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="flowbite.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="visitors"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Unique visitors (per month)
-            </label>
-            <input
-              type="number"
-              id="visitors"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder=""
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Email address
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="john.doe@company.com"
-            required
-          />
-        </div>
+
         <div className="mb-6">
           <label
             htmlFor="password"
@@ -181,9 +144,11 @@ const EditProfilePage = () => {
           <input
             type="password"
             id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             placeholder="•••••••••"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -196,40 +161,36 @@ const EditProfilePage = () => {
           <input
             type="password"
             id="confirm_password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500"
             placeholder="•••••••••"
             required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <div className="flex items-start mb-6">
-          <div className="flex items-center h-5">
-            <input
-              id="remember"
-              type="checkbox"
-              value=""
-              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-              required
-            />
-          </div>
-          <label
-            htmlFor="remember"
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            I agree with the{" "}
-            <a
-              href="#"
-              className="text-blue-600 hover:underline dark:text-blue-500"
-            >
-              terms and conditions
-            </a>
-            .
-          </label>
-        </div>
+
+        <label
+          htmlFor="message"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Bio
+        </label>
+        <textarea
+          id="message"
+          rows="4"
+          maxLength={10}
+          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 mb-8"
+          placeholder="Write your thoughts here..."
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        ></textarea>
+
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 flex items-center justify-center gap-2 transition-all"
         >
-          Submit
+          <FaSave className="w-4 h-4 inline-block" />
+          Save
         </button>
       </form>
     </div>

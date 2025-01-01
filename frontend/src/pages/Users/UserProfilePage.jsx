@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../services/users";
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon, PencilIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -30,28 +30,29 @@ const UserProfilePage = () => {
   }
 
   return (
-    <div className="container mx-auto p-4 items-center justify-center">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
+    <div className="container mx-auto p-4">
+      <div className="flex flex-col sm:flex-row items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-center">
           <ChangeProfilePicture
             user={user}
             setUser={setUser}
             isEditable={false}
             size="90"
           />
-          <div className="ml-4">
-            <h2 className="text-2xl font-semibold">{user.username}</h2>
+          <div className="mt-4 sm:mt-0 sm:ml-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <h2 className="text-2xl font-semibold py-2">{user.username}</h2>
             <button
-              className="text-indigo-500 hover:text-indigo-900 transition-all"
+              className="transition-all bg-blue-gray-200 rounded-md px-2 py-1 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
               onClick={() => navigate("/dashboard/profile/edit")}
             >
+              <PencilIcon className="w-5 h-5" />
               Edit Profile
             </button>
           </div>
         </div>
         <button
           type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center gap-2"
+          className="mt-4 sm:mt-0 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center gap-2 transition-all"
           onClick={() => navigate("/dashboard/profile/create-post")}
         >
           <PlusCircleIcon className="w-5 h-5" />
@@ -60,6 +61,7 @@ const UserProfilePage = () => {
       </div>
     </div>
   );
+
 };
 
 export default UserProfilePage;

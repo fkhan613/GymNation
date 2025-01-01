@@ -78,8 +78,6 @@ const updateUserById = async (req, res) => {
     password,
     username,
     bio,
-    pfp,
-    fitnessGoals,
   } = req.body;
 
   // Validate data
@@ -114,11 +112,11 @@ const updateUserById = async (req, res) => {
   user.email = email || user.email;
   user.username = username || user.username;
   user.bio = bio || user.bio;
-  user.pfp = pfp || user.pfp;
-  user.fitnessGoals = fitnessGoals || user.fitnessGoals;
 
+  //only chnage the password if a new one is provided
   if (password) {
-    user.password = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
   }
 
   const result = await user.save();
