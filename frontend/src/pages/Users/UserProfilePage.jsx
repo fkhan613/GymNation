@@ -59,7 +59,7 @@ const UserProfilePage = () => {
             <h2 className="text-2xl font-semibold py-2">{user.username}</h2>
             <div className="flex flex-wrap gap-4">
               <button
-                className="transition-all bg-blue-gray-200 rounded-md px-2 py-1 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
+                className="transition-all bg-gray-300 rounded-md px-2 py-1 text-sm font-semibold text-black shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 flex items-center gap-2"
                 onClick={() => navigate("/dashboard/profile/edit")}
               >
                 <PencilIcon className="w-5 h-5" />

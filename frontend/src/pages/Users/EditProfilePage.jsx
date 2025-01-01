@@ -80,7 +80,7 @@ const EditProfilePage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <motion.form
-        className="m-6 p-6 shadow-lg max-w-2xl w-full shadow-gray-400 rounded-lg"
+        className="m-6 p-6 shadow-lg max-w-2xl w-full shadow-gray-300 rounded-lg"
         action="#"
         method="POST"
         initial={{ opacity: 0, x: -60 }}
@@ -90,7 +90,7 @@ const EditProfilePage = () => {
         <div className="mb-10 flex items-center justify-center flex-col ">
           <div className="mb-6 flex justify-start w-full">
             <button
-              className="transition-all bg-blue-gray-200 rounded-md px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
+              className="transition-all bg-gray-300 rounded-md px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 flex items-center gap-2"
               onClick={() => navigate("/dashboard/profile")}
             >
               <ArrowLeftIcon className="w-4 h-4 inline-block" />
