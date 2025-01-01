@@ -11,7 +11,11 @@ const UserProfilePage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  useTitle(`Profile | ` + import.meta.env.VITE_APP_NAME);
+
+  useTitle(
+    `${JSON.parse(localStorage.getItem("user")).username} | ` +
+      import.meta.env.VITE_APP_NAME
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +26,10 @@ const UserProfilePage = () => {
       setLoading(false);
     };
     fetchData();
+    
   }, []);
+
+  
 
   if (loading) {
     return (
@@ -31,6 +38,7 @@ const UserProfilePage = () => {
       </div>
     );
   }
+
 
   return (
     <motion.div
