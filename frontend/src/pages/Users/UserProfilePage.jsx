@@ -41,27 +41,28 @@ const UserProfilePage = () => {
           />
           <div className="mt-4 sm:mt-0 sm:ml-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <h2 className="text-2xl font-semibold py-2">{user.username}</h2>
-            <button
-              className="transition-all bg-blue-gray-200 rounded-md px-2 py-1 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
-              onClick={() => navigate("/dashboard/profile/edit")}
-            >
-              <PencilIcon className="w-5 h-5" />
-              Edit Profile
-            </button>
+            <div className="flex flex-wrap gap-4">
+              <button
+                className="transition-all bg-blue-gray-200 rounded-md px-2 py-1 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
+                onClick={() => navigate("/dashboard/profile/edit")}
+              >
+                <PencilIcon className="w-5 h-5" />
+                Edit Profile
+              </button>
+              <button
+                type="submit"
+                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center gap-2 transition-all"
+                onClick={() => navigate("/dashboard/profile/create-post")}
+              >
+                <PlusCircleIcon className="w-5 h-5" />
+                Add Post
+              </button>
+            </div>
           </div>
         </div>
-        <button
-          type="submit"
-          className="mt-4 sm:mt-0 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 flex items-center gap-2 transition-all"
-          onClick={() => navigate("/dashboard/profile/create-post")}
-        >
-          <PlusCircleIcon className="w-5 h-5" />
-          Add Post
-        </button>
       </div>
     </div>
   );
-
 };
 
 export default UserProfilePage;

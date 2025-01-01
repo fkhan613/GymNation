@@ -10593,3 +10593,16 @@
 20241231	19:28:18	83a9256a-1d78-42bf-806a-a57316aee303	GET	/uploads/1735658084779-d2d39c4e-47e5-4034-b39c-b9fd0a64599b.png	undefined
 20241231	19:32:44	91d6295d-778b-4758-a08d-628281b9389a	GET	/uploads/1735658084779-d2d39c4e-47e5-4034-b39c-b9fd0a64599b.png	undefined
 20241231	19:39:02	6d91c30a-fc28-4a55-a710-d793a379e289	GET	/uploads/1735658084779-d2d39c4e-47e5-4034-b39c-b9fd0a64599b.png	undefined
+20250101	08:56:20	84ee23d6-fcb6-4639-bd61-78d3ece98b16	OPTIONS	/auth/login	http://localhost:5173
+20250101	08:56:20	ec55c564-034c-4eff-8045-06dddd7e09f3	POST	/auth/login	http://localhost:5173
+20250101	08:56:24	6459d6d9-5512-486b-89de-a9b3f19eda27	OPTIONS	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	08:56:24	5c8f2747-161e-446f-b016-343913d545d4	GET	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	08:56:24	0fdeaba3-0d25-49a4-a96b-705ce22278b8	GET	/uploads/1735690714333-44e0ae66-0f10-4ba9-904c-9a25cecd0204.jpeg	undefined
+20250101	08:57:22	c615d7f7-1387-4929-8125-e8b4926abb3f	OPTIONS	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	08:57:22	3822d3ef-064e-4890-bcc6-aba7100fb30f	GET	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	08:57:22	d1959b61-32e2-4560-9c88-d03251cdf3bf	GET	/uploads/1735690714333-44e0ae66-0f10-4ba9-904c-9a25cecd0204.jpeg	undefined
+20250101	09:02:01	c2c7067f-face-4ef4-822d-e9ef4bf2592b	OPTIONS	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	09:02:01	f8b63bb5-2020-4ac1-84ee-5e01dbabcd7c	GET	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	09:02:06	cd3491a4-ac5f-47ea-9c1c-ed0a66332ee9	OPTIONS	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	09:02:06	95d8c613-09f8-495d-97d2-2e6d28628658	GET	/users/profile?userId=669c402652687b9c8adef8fc	http://localhost:5173
+20250101	09:02:07	27141361-fffb-45ef-9db2-940e81f45372	GET	/uploads/1735690714333-44e0ae66-0f10-4ba9-904c-9a25cecd0204.jpeg	undefined
