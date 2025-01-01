@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { updateUserProfile } from "../../services/users";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import {useNavigate} from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const EditProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -14,6 +19,8 @@ const EditProfilePage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [bio, setBio] = useState("");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  useTitle("Edit Profile | " + import.meta.env.VITE_APP_NAME);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,6 +39,36 @@ const EditProfilePage = () => {
     fetchUser();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    const updates = {
+      firstName,
+      lastName,
+      username,
+      email,
+      bio,
+    };
+
+    if (password) {
+      updates.password = password;
+    }
+
+    try {
+      const updatedUser = await updateUserProfile(updates);
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      toast.success("Profile updated successfully");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen ">
@@ -42,18 +79,24 @@ const EditProfilePage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
-      <PulseLoader
-        color="#2563EB"
-        className=" mt-24"
-        loading={loading}
-        size={15}
-      />
-      <form
+      <motion.form
         className="m-6 p-6 shadow-lg max-w-2xl w-full shadow-indigo-gray-100"
         action="#"
         method="POST"
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
       >
         <div className="mb-10 flex items-center justify-center flex-col">
+          <div className="mb-6 flex justify-start w-full">
+            <button
+              className="transition-all bg-blue-gray-200 rounded-md px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-blue-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-gray-600 flex items-center gap-2"
+              onClick={() => navigate("/dashboard/profile")}
+            >
+              <ArrowLeftIcon className="w-4 h-4 inline-block" />
+              Back
+            </button>
+          </div>
           <ChangeProfilePicture
             user={user}
             setUser={setUser}
@@ -178,7 +221,7 @@ const EditProfilePage = () => {
         <textarea
           id="message"
           rows="4"
-          maxLength={10}
+          maxLength={500}
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 mb-8"
           placeholder="Write your thoughts here..."
           value={bio}
@@ -188,11 +231,12 @@ const EditProfilePage = () => {
         <button
           type="submit"
           className="text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 flex items-center justify-center gap-2 transition-all"
+          onClick={handleSubmit}
         >
           <FaSave className="w-4 h-4 inline-block" />
           Save
         </button>
-      </form>
+      </motion.form>
     </div>
   );
 };

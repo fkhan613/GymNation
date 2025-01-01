@@ -4,11 +4,14 @@ import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePict
 import { PlusCircleIcon, PencilIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
+import { motion } from "framer-motion";
+import useTitle from "../../hooks/useTitle";
 
 const UserProfilePage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  useTitle(`Profile | ` + import.meta.env.VITE_APP_NAME);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +22,7 @@ const UserProfilePage = () => {
       setLoading(false);
     };
     fetchData();
-  }, [location.search]);
+  }, []);
 
   if (loading) {
     return (
@@ -30,7 +33,12 @@ const UserProfilePage = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <motion.div
+      className="container mx-auto p-4"
+      initial={{ opacity: 0, y: -60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex flex-col sm:flex-row items-center">
           <ChangeProfilePicture
@@ -61,7 +69,7 @@ const UserProfilePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

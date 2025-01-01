@@ -80,6 +80,8 @@ const updateUserById = async (req, res) => {
     bio,
   } = req.body;
 
+  console.log(req.body)
+
   // Validate data
   if (!id || !username || !email) {
     return res

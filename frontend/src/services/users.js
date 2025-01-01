@@ -129,14 +129,18 @@ export const updateUserProfilePicture = async (userId, pfpUrl) => {
   }
 };
 
-export const updateUserProfile = async (userId, updates) => {
+export const updateUserProfile = async (updates) => {
   const accessToken = localStorage.getItem("accessToken");
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   try {
     // Send a PATCH request to update the user's profile
     const response = await axios.patch(
-      `${API_URL}/users/${userId}`,
-      updates,
+      `${API_URL}/users`,
+      {
+        id: userId,
+        ...updates,
+      },
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
