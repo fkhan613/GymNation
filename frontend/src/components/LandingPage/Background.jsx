@@ -12,7 +12,7 @@ const Background = () => {
       height="100%"
       viewBox="0 0 1600 900"
       preserveAspectRatio="xMidYMax slice"
-      className="landing-page-background"
+      className="landing-page-background z-0"
     >
       <defs>
         <linearGradient id="bg">

@@ -1,12 +1,15 @@
 import useTitle from "../hooks/useTitle"
+import Default from "../components/HomePage/Default";
 
 const HomePage = () => {
 
   useTitle("Home | " + import.meta.env.VITE_APP_NAME)
 
   return (
-    <div>HomePage</div>
-  )
+    <div>
+      <Default />
+    </div>
+  );
 }
 
 export default HomePage
