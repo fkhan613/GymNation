@@ -1,11 +1,68 @@
+import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
+import { useState, useEffect } from "react";
+import PulseLoader from "react-spinners/PulseLoader";
+
 const EditProfilePage = () => {
+  const [user, setUser] = useState(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [bio, setBio] = useState("");
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userProfile = localStorage.getItem("user");
+      if (userProfile) {
+        const parsedUserProfile = JSON.parse(userProfile);
+        setUser(parsedUserProfile);
+        setFirstName(parsedUserProfile.firstName);
+        setLastName(parsedUserProfile.lastName);
+        setUsername(parsedUserProfile.username);
+        setEmail(parsedUserProfile.email);
+        setBio(parsedUserProfile.bio);
+        
+      }
+      setLoading(false);
+    };
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen ">
+        <PulseLoader color="#2563EB" className=" mt-24" size={15} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen ">
+      <PulseLoader
+        color="#2563EB"
+        className=" mt-24"
+        loading={loading}
+        size={15}
+      />
       <form
-        className="m-6 p-6 shadow-md min-w-screen"
+        className="m-6 p-6 shadow-lg max-w-2xl w-full"
         action="#"
         method="POST"
       >
+        <div className="mb-10 flex items-center justify-center flex-col">
+          <ChangeProfilePicture
+            user={user}
+            setUser={setUser}
+            isEditable={true}
+            size="150"
+          />
+
+          <div className="font-semibold text-2xl mt-5">{user.username}</div>
+        </div>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <label

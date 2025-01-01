@@ -3,9 +3,11 @@ import { getUserProfile } from "../../services/users";
 import ChangeProfilePicture from "../../components/ProfilePage/ChangeProfilePicture";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const UserProfilePage = () => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,14 +16,21 @@ const UserProfilePage = () => {
         JSON.parse(localStorage.getItem("user"))._id
       );
       setUser(userProfile);
+      setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [location.search]);
 
-  if (!user) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen ">
+        <PulseLoader color="#2563EB" className=" mt-24" size={15} />
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 items-center justify-center">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <ChangeProfilePicture

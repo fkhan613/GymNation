@@ -62,6 +62,14 @@ const WorkoutsPage = () => {
     );
   };
 
+    if (loading) {
+      return (
+        <div className="flex items-center justify-center min-h-screen ">
+          <PulseLoader color="#2563EB" className=" mt-24" size={15} />
+        </div>
+      );
+    }
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-20 shadow-md rounded p-6">
@@ -102,13 +110,6 @@ const WorkoutsPage = () => {
           </Typography>
         )}
       </div>
-
-      <PulseLoader
-        color="#2563EB"
-        className="mt-16"
-        loading={loading}
-        size={15}
-      />
     </div>
   );
 };
