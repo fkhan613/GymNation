@@ -50,7 +50,7 @@ const UserProfilePage = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex flex-col sm:flex-row items-center">
           <ChangeProfilePicture
-            user={user}
+            user={user} 
             setUser={setUser}
             isEditable={false}
             size="90"
