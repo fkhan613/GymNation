@@ -27,14 +27,24 @@ export const getPostById = async (id) => {
 };
 
 // Create new post
-export const createNewPost = async (userId, caption, image, tags) => {
+export const createNewPost = async (userId, caption, images, tags) => {
+
+  const accessToken = localStorage.getItem("accessToken");
+
   try {
-    const response = await axios.post(`${API_URL}/posts`, {
+    const response = await axios.post(`${API_URL}/posts`, 
+    {
       userId,
       caption,
-      image,
+      images,
       tags,
-    });
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
     return response.data;
   } catch (error) {
     console.error("Error creating new post:", error);

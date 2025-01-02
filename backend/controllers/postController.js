@@ -80,11 +80,11 @@ const getPostsByUserId = async (req, res) => {
 // @route POST /posts
 // @access private
 const createNewPost = async (req, res) => {
-  const { userId, caption, image, tags } = req.body;
+  const { userId, caption, images, tags } = req.body;
 
   // Validate data
-  if (!userId || !image) {
-    return res.status(400).json({ message: "User ID and Image Required" });
+  if (!userId || !images) {
+    return res.status(400).json({ message: "User ID and at least 1 image required" });
   }
 
   // Check if the user exists
@@ -105,7 +105,7 @@ const createNewPost = async (req, res) => {
   const newPost = new Post({
     userId,
     caption,
-    image,
+    images,
     tags,
   });
 
