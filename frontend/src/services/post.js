@@ -61,7 +61,8 @@ export const updatePostById = async (id, userId, caption, image, tags) => {
       caption,
       image,
       tags,
-    });
+    }
+  );
     return response.data;
   } catch (error) {
     console.error("Error updating post:", error);
